@@ -88,7 +88,7 @@
   .sf-carousel-wrap{position:relative; margin-bottom:44px;}
   .sf-carousel{display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; -ms-overflow-style:none; scrollbar-width:none; border-radius:10px; border:1px solid var(--sf-line);}
   .sf-carousel::-webkit-scrollbar{display:none;}
-  .sf-carousel-slide{flex:0 0 100%; scroll-snap-align:start; position:relative; aspect-ratio:16/9; cursor:pointer; background:var(--sf-panel2);}
+  .sf-carousel-slide{flex:0 0 100%; scroll-snap-align:start; position:relative; aspect-ratio:16/9; cursor:pointer; background:#fff;}
   .sf-carousel-slide img{width:100%; height:100%; object-fit:contain; display:block;}
   .sf-carousel-caption{position:absolute; inset:auto 0 0 0; background:linear-gradient(to top, rgba(8,7,5,.88), transparent); padding:26px 20px 18px; text-align:center;}
   .sf-carousel-name{font-family:'Rubik',sans-serif; font-weight:800; font-size:1.3rem; color:var(--sf-ink);}
@@ -99,7 +99,7 @@
   @media (max-width:640px){ .sf-carousel-slide{aspect-ratio:4/3;} .sf-carousel-name{font-size:1.05rem;} .sf-carousel-caption{padding:18px 14px 14px;} }
   .sf-cat-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:14px; margin-bottom:44px;}
   @media (max-width:640px){ .sf-cat-grid{grid-template-columns:repeat(2,1fr); gap:10px;} }
-  .sf-cat-card{position:relative; aspect-ratio:1/1; border-radius:8px; overflow:hidden; border:1px solid var(--sf-line); cursor:pointer; padding:0; background:var(--sf-panel2); font-family:inherit;}
+  .sf-cat-card{position:relative; aspect-ratio:1/1; border-radius:8px; overflow:hidden; border:1px solid var(--sf-line); cursor:pointer; padding:0; background:#fff; font-family:inherit;}
   .sf-cat-card img{width:100%; height:100%; object-fit:contain; display:block; transition:transform .3s;}
   .sf-cat-card:hover img{transform:scale(1.06);}
   .sf-cat-card-overlay{position:absolute; inset:0; background:linear-gradient(to top, rgba(8,7,5,.85) 0%, rgba(8,7,5,.1) 55%, transparent 75%); display:flex; flex-direction:column; justify-content:flex-end; align-items:center; padding:14px; text-align:center;}
@@ -163,7 +163,7 @@
   .sf-card-oos .sf-card-price{opacity:.5;}
   .sf-oos-badge{position:absolute; top:8px; right:8px; z-index:1; background:#7a2b2b; color:#f3efe6; font-size:.7rem; font-weight:700; padding:4px 9px; border-radius:3px;}
   .sf-oos-note{background:var(--sf-panel2); border:1px solid #7a2b2b; color:#e0a8a8; font-size:.85rem; padding:12px 14px; border-radius:6px;}
-  .sf-card-img{aspect-ratio:4/3; background:var(--sf-panel2); display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;}
+  .sf-card-img{aspect-ratio:4/3; background:#fff; color:#c9c9c9; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;}
   .sf-card-img img{width:100%; height:100%; object-fit:contain;}
   .sf-card-nav{
     position:absolute; top:50%; transform:translateY(-50%); width:26px; height:26px; border-radius:50%;
@@ -195,7 +195,7 @@
   }
   .sf-detail{display:grid; grid-template-columns:1fr 1fr;}
   @media (max-width:720px){ .sf-detail{grid-template-columns:1fr;} }
-  .sf-detail-img{background:var(--sf-panel2); display:flex; align-items:center; justify-content:center; min-height:280px; position:relative;}
+  .sf-detail-img{background:#fff; color:#c9c9c9; display:flex; align-items:center; justify-content:center; min-height:280px; position:relative;}
   .sf-detail-img img{width:100%; height:100%; object-fit:contain; max-height:500px;}
   .sf-detail-nav{position:absolute; top:50%; transform:translateY(-50%); width:34px; height:34px; border-radius:50%; border:none; background:rgba(0,0,0,.45); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer;}
   .sf-detail-nav svg{width:16px;height:16px;}
@@ -407,12 +407,12 @@
   };
 
   function sfSavePage(page){
-    try{ localStorage.setItem('mg_sf_page', page); }catch(e){}
+    try{ sessionStorage.setItem('mg_sf_page', page); }catch(e){}
   }
   function sfLoadPage(){
     var valid = ['home','shop','workshops','about','contact'];
     try{
-      var p = localStorage.getItem('mg_sf_page');
+      var p = sessionStorage.getItem('mg_sf_page');
       return valid.indexOf(p)!==-1 ? p : 'home';
     }catch(e){ return 'home'; }
   }
@@ -1314,9 +1314,11 @@
     }
   }
 
+  if('scrollRestoration' in history){ try{ history.scrollRestoration = 'manual'; }catch(e){} }
   sfLoadCart();
   SF.page = sfLoadPage();
   renderStorefront();
+  window.scrollTo(0,0);
 })();
 </script>
 </body>
