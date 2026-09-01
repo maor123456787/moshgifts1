@@ -227,6 +227,15 @@
   }
   @keyframes sfSlideInLeft{from{transform:translateX(-100%);}to{transform:translateX(0);}}
   @media (prefers-reduced-motion: reduce){ .sf-cart-drawer{animation:none;} }
+  @keyframes sfSlideInUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+  @media (max-width:640px){
+    .sf-cart-drawer{
+      inset:auto 0 0 0; width:100%; height:auto; max-height:82vh;
+      border-radius:16px 16px 0 0; border-inline-end:none; border-top:1px solid var(--sf-line);
+      animation:sfSlideInUp .28s cubic-bezier(.2,.8,.2,1);
+    }
+  }
+  @media (max-width:640px) and (prefers-reduced-motion: reduce){ .sf-cart-drawer{animation:none;} }
   .sf-cart-head{padding:20px; border-bottom:1px solid var(--sf-line); display:flex; align-items:center; justify-content:space-between;}
   .sf-cart-head h3{font-family:'Frank Ruhl Libre',serif; margin:0; font-size:1.2rem;}
   .sf-cart-items{flex:1; overflow-y:auto; padding:12px 20px;}
@@ -1039,6 +1048,7 @@
       (canSend
         ? '<a class="sf-btn sf-btn-primary" href="'+sfWaHref()+'" target="_blank" rel="noopener" id="sfSendWhatsapp">שליחת ההזמנה לבדיקה ואישור</a>'
         : '<button type="button" class="sf-btn sf-btn-primary" disabled>שליחת ההזמנה לבדיקה ואישור</button>') +
+      '<button type="button" class="sf-btn sf-btn-ghost" id="sfContinueShopping">המשך קנייה</button>' +
       '<p style="color:var(--sf-ink-faint);font-size:.76rem;margin:0;line-height:1.5">לא זו רכישה סופית - זו בקשת הצעת מחיר, נחזור אליך בוואטסאפ.</p>';
   }
 
@@ -1200,6 +1210,8 @@
     if(nameInput) nameInput.addEventListener('input', function(){ SF.customerName = nameInput.value; sfSaveCart(); rerenderSfCartFoot(); });
     var phoneInput = document.getElementById('sfPhone');
     if(phoneInput) phoneInput.addEventListener('input', function(){ SF.customerPhone = phoneInput.value; sfSaveCart(); rerenderSfCartFoot(); });
+    var continueBtn = document.getElementById('sfContinueShopping');
+    if(continueBtn) continueBtn.addEventListener('click', function(){ SF.cartOpen = false; renderStorefront(); });
   }
 
   function rerenderSfCartFoot(){
