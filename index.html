@@ -100,7 +100,7 @@
   .sf-cat-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:14px; margin-bottom:44px;}
   @media (max-width:640px){ .sf-cat-grid{grid-template-columns:repeat(2,1fr); gap:10px;} }
   .sf-cat-card{position:relative; aspect-ratio:1/1; border-radius:8px; overflow:hidden; border:1px solid var(--sf-line); cursor:pointer; padding:0; background:var(--sf-panel2); font-family:inherit;}
-  .sf-cat-card img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .3s;}
+  .sf-cat-card img{width:100%; height:100%; object-fit:contain; display:block; transition:transform .3s;}
   .sf-cat-card:hover img{transform:scale(1.06);}
   .sf-cat-card-overlay{position:absolute; inset:0; background:linear-gradient(to top, rgba(8,7,5,.85) 0%, rgba(8,7,5,.1) 55%, transparent 75%); display:flex; flex-direction:column; justify-content:flex-end; align-items:center; padding:14px; text-align:center;}
   .sf-cat-card-name{color:var(--sf-ink); font-weight:700; font-size:.92rem; font-family:'Rubik',sans-serif;}
@@ -1109,6 +1109,11 @@
   }
 
   var HERO_CAROUSEL_IDX = 0;
+  function sfScrollSlideIntoView(slide){
+    var y = window.scrollY;
+    slide.scrollIntoView({behavior:'smooth', inline:'start', block:'nearest'});
+    window.scrollTo(0, y);
+  }
   function wireHeroCarousel(){
     var track = document.getElementById('sfHeroCarousel');
     if(!track) return;
@@ -1116,7 +1121,7 @@
     if(!slides.length) return;
     function goTo(i){
       HERO_CAROUSEL_IDX = ((i % slides.length) + slides.length) % slides.length;
-      slides[HERO_CAROUSEL_IDX].scrollIntoView({behavior:'smooth', inline:'start', block:'nearest'});
+      sfScrollSlideIntoView(slides[HERO_CAROUSEL_IDX]);
     }
     var prevBtn = document.getElementById('sfCarouselPrev');
     if(prevBtn) prevBtn.addEventListener('click', function(){ goTo(HERO_CAROUSEL_IDX - 1); });
@@ -1129,7 +1134,7 @@
         var curSlides = t.querySelectorAll('.sf-carousel-slide');
         if(curSlides.length<2) return;
         HERO_CAROUSEL_IDX = (HERO_CAROUSEL_IDX + 1) % curSlides.length;
-        curSlides[HERO_CAROUSEL_IDX].scrollIntoView({behavior:'smooth', inline:'start', block:'nearest'});
+        sfScrollSlideIntoView(curSlides[HERO_CAROUSEL_IDX]);
       }, 4500);
     }
   }
