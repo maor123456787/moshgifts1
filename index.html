@@ -293,6 +293,8 @@
   .sf-cart-item-addons{font-size:.74rem; color:var(--sf-ink-soft); margin-top:2px;}
   .sf-cart-item-note{font-size:.74rem; color:var(--sf-ink-faint); margin-top:2px; font-style:italic;}
   .sf-cart-item-price{font-size:.82rem; font-weight:700; color:var(--sf-ink); margin-top:4px; font-variant-numeric:tabular-nums;}
+  .sf-cart-item-saved{font-size:.72rem; color:#d64545; font-weight:600; margin-top:2px;}
+  .sf-cart-saved-total{font-size:.82rem; color:#d64545; font-weight:700; text-align:center;}
   .sf-cart-item-edit{background:none; border:none; padding:0; margin-top:6px; color:var(--sf-accent); font-size:.76rem; font-weight:600; cursor:pointer; text-decoration:underline;}
   .sf-input:focus-visible, .sf-pill:focus-visible, .sf-btn:focus-visible{outline:2px solid var(--sf-accent); outline-offset:2px;}
 
@@ -511,11 +513,17 @@
       var selected = SF.cartAddons[pid] || {};
       var addons = (p.addons||[]).filter(function(a){ return selected[a.id]; });
       var addonsPerUnit = addons.reduce(function(s,a){ return s + (Number(a.price)||0); }, 0);
-      return { product:p, qty:qty, addons:addons, note:(SF.cartNotes[pid]||'').trim(), lineTotal:(effectivePrice(p)+addonsPerUnit)*qty };
+      var onSale = hasSale(p);
+      var lineTotal = (effectivePrice(p)+addonsPerUnit)*qty;
+      var originalLineTotal = (Number(p.price)+addonsPerUnit)*qty;
+      return { product:p, qty:qty, addons:addons, note:(SF.cartNotes[pid]||'').trim(), lineTotal:lineTotal, onSale:onSale, originalLineTotal:originalLineTotal, saved:onSale ? (originalLineTotal-lineTotal) : 0 };
     }).filter(Boolean);
   }
   function sfCartTotal(){
     return sfCartEntries().reduce(function(s,e){ return s+e.lineTotal; }, 0);
+  }
+  function sfCartSaved(){
+    return sfCartEntries().reduce(function(s,e){ return s+e.saved; }, 0);
   }
   function sfWaPhone(){
     var raw = String(BUSINESS_WHATSAPP||'').replace(/\D/g,'');
@@ -529,14 +537,15 @@
       lines.push('');
       lines.push(i+'. '+e.product.name);
       lines.push('   מק"ט: '+(e.product.sku||'-'));
-      lines.push('   כמות: '+e.qty+' | מחיר לפריט: '+money(e.lineTotal));
+      lines.push('   כמות: '+e.qty+' | מחיר לפריט: '+(e.onSale ? money(e.originalLineTotal)+' -> '+money(e.lineTotal)+' (מבצע, חיסכון '+money(e.saved)+')' : money(e.lineTotal)));
       e.addons.forEach(function(a){
         lines.push('   + '+a.name+' ('+(Number(a.price)>0 ? '+'+money(a.price) : 'חינם')+')');
       });
       if(e.note) lines.push('   הערה: '+e.note);
       i++;
     });
-    lines.push('', 'סה"כ משוער: '+money(sfCartTotal()));
+    var totalSaved = sfCartSaved();
+    lines.push('', 'סה"כ משוער: '+money(sfCartTotal()) + (totalSaved>0 ? ' (נחסכו '+money(totalSaved)+' במבצעים)' : ''));
     return lines.join('\n');
   }
   function sfWaHref(){
@@ -1110,7 +1119,10 @@
           return esc(a.name) + (Number(a.price)>0 ? ' (+'+money(a.price)+')' : '');
         }).join(', ') + '</div>' : '') +
         (e.note ? '<div class="sf-cart-item-note">הערה: '+esc(e.note)+'</div>' : '') +
-        '<div class="sf-cart-item-price">'+money(e.lineTotal)+'</div>' +
+        (e.onSale ?
+          '<div class="sf-cart-item-price"><span class="sf-price-strike">'+money(e.originalLineTotal)+'</span><span class="sf-price-sale">'+money(e.lineTotal)+'</span></div>' +
+          '<div class="sf-cart-item-saved">חסכת '+money(e.saved)+' במבצע</div>' :
+          '<div class="sf-cart-item-price">'+money(e.lineTotal)+'</div>') +
         '<button type="button" class="sf-cart-item-edit" data-sf-edit-cart-item="'+e.product.id+'">עריכת פריט</button>' +
         '</div>' +
         '<div class="sf-stepper">' +
@@ -1125,8 +1137,10 @@
     if(!entries.length) return '';
     var canSend = sfCanSend();
     var total = sfCartTotal();
+    var saved = sfCartSaved();
     var belowMin = MIN_ORDER>0 && total < MIN_ORDER;
-    return '<div class="sf-cart-total"><span>סה"כ משוער</span><span>'+money(total)+'</span></div>' +
+    return (saved>0 ? '<div class="sf-cart-saved-total">חסכת בזכות מבצעים: '+money(saved)+'</div>' : '') +
+      '<div class="sf-cart-total"><span>סה"כ משוער</span><span>'+money(total)+'</span></div>' +
       (belowMin ? '<p style="color:var(--sf-accent);font-size:.8rem;margin:0 0 4px">מינימום להזמנה '+money(MIN_ORDER)+' - נותרו '+money(MIN_ORDER-total)+' להשלמה</p>' : '') +
       '<div class="sf-field"><label for="sfName">שם מלא</label><input class="sf-input" id="sfName" value="'+esc(SF.customerName)+'" placeholder="השם שלך"></div>' +
       '<div class="sf-field"><label for="sfPhone">טלפון</label><input class="sf-input" id="sfPhone" value="'+esc(SF.customerPhone)+'" placeholder="05X-XXXXXXX"></div>' +
