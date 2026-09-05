@@ -537,14 +537,19 @@
     if(PRODUCTS.some(hasSale)) list = ['מבצעים'].concat(list);
     return list;
   }
+  function sfProductMatchesCategoryFilter(p){
+    if(!SF.categoryFilter) return true;
+    if(SF.categoryFilter === 'מבצעים') return hasSale(p);
+    return (p.categories||[]).indexOf(SF.categoryFilter) !== -1;
+  }
   function sfSizes(){
     var set = {};
-    PRODUCTS.forEach(function(p){ if(p.size) set[p.size] = true; });
+    PRODUCTS.forEach(function(p){ if(!sfProductMatchesCategoryFilter(p)) return; if(p.size) set[p.size] = true; });
     return Object.keys(set).sort();
   }
   function sfMaterials(){
     var set = {};
-    PRODUCTS.forEach(function(p){ (p.materials||[]).forEach(function(m){ set[m] = true; }); });
+    PRODUCTS.forEach(function(p){ if(!sfProductMatchesCategoryFilter(p)) return; (p.materials||[]).forEach(function(m){ set[m] = true; }); });
     return Object.keys(set).sort();
   }
   function sfSubcategoriesForCurrentFilter(){
@@ -1298,7 +1303,7 @@
     wireSfWizard();
     wireHeroCarousel();
     Array.prototype.forEach.call(document.querySelectorAll('[data-sf-cat-tile]'), function(b){
-      b.addEventListener('click', function(){ SF.categoryFilter = b.getAttribute('data-sf-cat-tile'); SF.subcategoryFilters = {}; sfGoPage('shop'); });
+      b.addEventListener('click', function(){ SF.categoryFilter = b.getAttribute('data-sf-cat-tile'); SF.subcategoryFilters = {}; SF.sizeFilter = ''; SF.materialFilter = ''; sfGoPage('shop'); });
     });
     Array.prototype.forEach.call(document.querySelectorAll('[data-sf-addon-toggle]'), function(b){
       b.addEventListener('click', function(){
@@ -1315,7 +1320,7 @@
       sfSaveCart();
     });
     Array.prototype.forEach.call(document.querySelectorAll('[data-sf-cat]'), function(b){
-      b.addEventListener('click', function(){ SF.categoryFilter = b.getAttribute('data-sf-cat'); SF.subcategoryFilters = {}; renderStorefront(); });
+      b.addEventListener('click', function(){ SF.categoryFilter = b.getAttribute('data-sf-cat'); SF.subcategoryFilters = {}; SF.sizeFilter = ''; SF.materialFilter = ''; renderStorefront(); });
     });
     Array.prototype.forEach.call(document.querySelectorAll('[data-sf-subcat]'), function(cb){
       cb.addEventListener('change', function(){
