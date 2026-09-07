@@ -139,16 +139,16 @@
 
   .sf-nav{
     position:sticky; top:57px; z-index:20; background:rgba(21,19,15,.92); backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--sf-line); padding:10px 56px 10px 16px; display:flex; flex-wrap:wrap;
-    gap:6px; max-height:66px; overflow:hidden; transition:max-height .2s ease;
+    border-bottom:1px solid var(--sf-line); padding:10px 16px; display:flex; flex-wrap:wrap;
+    gap:6px; transition:max-height .2s ease;
   }
-  .sf-nav.expanded{max-height:1000px;}
   .sf-nav-toggle{
-    position:absolute; left:10px; bottom:10px; z-index:2;
+    position:absolute; left:16px; bottom:10px; z-index:2;
     font-family:inherit; font-size:.7rem; font-weight:700; color:var(--sf-accent);
     background:var(--sf-panel); border:1px solid var(--sf-line); border-radius:999px;
     padding:5px 10px; cursor:pointer; white-space:nowrap;
   }
+  .sf-nav-toggle[hidden]{display:none;}
   .sf-pill{
     flex:none; font-family:inherit; font-size:.8rem; font-weight:600; color:var(--sf-ink-soft);
     background:transparent; border:1px solid var(--sf-line); border-radius:999px; padding:6px 13px;
@@ -688,9 +688,24 @@
 
   function renderStorefront(){
     var app = document.getElementById('app');
+    var panelBox = document.querySelector('#sfDetailOverlay .sf-panel-box');
+    var panelScroll = panelBox ? panelBox.scrollTop : null;
+    var cartItems = document.querySelector('#sfCartOverlay .sf-cart-items');
+    var cartScroll = cartItems ? cartItems.scrollTop : null;
+    var winScroll = window.scrollY;
     app.innerHTML = tplStorefront();
     wireStorefront();
+    sfMeasureCategoryNav();
     sfSaveCart();
+    if(panelScroll !== null){
+      var newPanelBox = document.querySelector('#sfDetailOverlay .sf-panel-box');
+      if(newPanelBox) newPanelBox.scrollTop = panelScroll;
+    }
+    if(cartScroll !== null){
+      var newCartItems = document.querySelector('#sfCartOverlay .sf-cart-items');
+      if(newCartItems) newCartItems.scrollTop = cartScroll;
+    }
+    window.scrollTo(0, winScroll);
   }
 
   function tplStorefront(){
@@ -1123,8 +1138,37 @@
     }
     var expanded = !!SF.categoriesExpanded;
     return '<div class="sf-nav'+(expanded?' expanded':'')+'" id="sfProducts">' + pill('','הכל') + cats.map(function(c){ return pill(c,c); }).join('') +
-      '<button type="button" class="sf-nav-toggle" id="sfNavToggle">' + (expanded ? '▲ הצג פחות' : '▾ כל הקטגוריות') + '</button>' +
+      '<button type="button" class="sf-nav-toggle" id="sfNavToggle" hidden>' + (expanded ? '▲ הצג פחות' : '▾ כל הקטגוריות') + '</button>' +
       '</div>';
+  }
+  function sfMeasureCategoryNav(){
+    var nav = document.getElementById('sfProducts');
+    var toggle = document.getElementById('sfNavToggle');
+    if(!nav || !toggle || !nav.classList.contains('sf-nav')) return;
+    nav.style.maxHeight = '';
+    nav.style.overflow = '';
+    var pills = nav.querySelectorAll('.sf-pill');
+    if(!pills.length){ toggle.hidden = true; return; }
+    var rowTops = [];
+    Array.prototype.forEach.call(pills, function(p){
+      if(rowTops.indexOf(p.offsetTop) === -1) rowTops.push(p.offsetTop);
+    });
+    if(rowTops.length <= 3 || SF.categoriesExpanded){
+      toggle.hidden = true;
+      nav.style.maxHeight = '';
+      nav.style.overflow = '';
+      return;
+    }
+    toggle.hidden = false;
+    rowTops.sort(function(a,b){ return a-b; });
+    var thirdRowTop = rowTops[2];
+    var thirdRowBottom = 0;
+    Array.prototype.forEach.call(pills, function(p){
+      if(p.offsetTop === thirdRowTop) thirdRowBottom = Math.max(thirdRowBottom, p.offsetTop + p.offsetHeight);
+    });
+    var navPaddingTop = parseFloat(getComputedStyle(nav).paddingTop) || 0;
+    nav.style.maxHeight = (thirdRowBottom + navPaddingTop) + 'px';
+    nav.style.overflow = 'hidden';
   }
 
   function tplSfSidebar(){
@@ -1170,17 +1214,20 @@
     return '<div class="sf-grid">' + list.map(function(p){
       var imgs = p.images||[];
       var cats = p.categories||[];
+      var hasVideo = !!p.videoUrl;
+      var totalSlides = imgs.length + (hasVideo ? 1 : 0);
       var idx = SF.cardImageIndex[p.id] || 0;
-      if(idx >= imgs.length) idx = 0;
+      if(idx >= totalSlides) idx = 0;
+      var isVideoSlide = hasVideo && idx === imgs.length;
       var onSale = hasSale(p);
       return '<div class="sf-card'+(p.outOfStock?' sf-card-oos':'')+'" data-sf-product="'+p.id+'">' +
-        '<div class="sf-card-img">' + (imgs.length ? '<img src="'+imgs[idx]+'" alt="">' : ICONS.img) +
+        '<div class="sf-card-img">' + (isVideoSlide ? sfVideoEmbedHtml(p.videoUrl) : (imgs.length ? '<img src="'+imgs[idx]+'" alt="">' : ICONS.img)) +
         (p.outOfStock ? '<span class="sf-oos-badge">אזל המלאי</span>' : '') +
-        (onSale ? '<span class="sf-sale-badge">מבצע -'+salePct(p)+'%</span>' : '') +
-        (imgs.length>1 ? (
+        (onSale && !isVideoSlide ? '<span class="sf-sale-badge">מבצע -'+salePct(p)+'%</span>' : '') +
+        (totalSlides>1 ? (
           '<button type="button" class="sf-card-nav sf-card-nav-prev" data-sf-card-prev="'+p.id+'">'+ICONS.chevron+'</button>' +
           '<button type="button" class="sf-card-nav sf-card-nav-next" data-sf-card-next="'+p.id+'">'+ICONS.chevron+'</button>' +
-          '<span class="sf-card-count">'+(idx+1)+'/'+imgs.length+'</span>'
+          '<span class="sf-card-count">'+(idx+1)+'/'+totalSlides+'</span>'
         ) : '') +
         '</div>' +
         '<div class="sf-card-body">' +
@@ -1394,7 +1441,7 @@
         e.stopPropagation();
         var id = b.getAttribute('data-sf-card-prev');
         var p = PRODUCTS.filter(function(x){return x.id===id;})[0];
-        var n = p ? (p.images||[]).length : 0;
+        var n = p ? (p.images||[]).length + (p.videoUrl?1:0) : 0;
         if(n<2) return;
         SF.cardImageIndex[id] = ((SF.cardImageIndex[id]||0) - 1 + n) % n;
         renderStorefront();
@@ -1405,7 +1452,7 @@
         e.stopPropagation();
         var id = b.getAttribute('data-sf-card-next');
         var p = PRODUCTS.filter(function(x){return x.id===id;})[0];
-        var n = p ? (p.images||[]).length : 0;
+        var n = p ? (p.images||[]).length + (p.videoUrl?1:0) : 0;
         if(n<2) return;
         SF.cardImageIndex[id] = ((SF.cardImageIndex[id]||0) + 1) % n;
         renderStorefront();
