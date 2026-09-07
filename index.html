@@ -139,9 +139,12 @@
 
   .sf-nav{
     position:sticky; top:57px; z-index:20; background:rgba(21,19,15,.92); backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--sf-line); padding:12px 16px; display:flex; flex-wrap:wrap;
-    justify-content:center; gap:8px;
+    border-bottom:1px solid var(--sf-line); padding:12px 16px; display:flex; gap:8px;
+    overflow-x:auto; scrollbar-width:none;
+    -webkit-mask-image:linear-gradient(to right, transparent, black 20px, black calc(100% - 20px), transparent);
+    mask-image:linear-gradient(to right, transparent, black 20px, black calc(100% - 20px), transparent);
   }
+  .sf-nav::-webkit-scrollbar{display:none;}
   .sf-pill{
     flex:none; font-family:inherit; font-size:.85rem; font-weight:600; color:var(--sf-ink-soft);
     background:transparent; border:1px solid var(--sf-line); border-radius:999px; padding:8px 16px;
