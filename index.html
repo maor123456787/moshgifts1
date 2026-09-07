@@ -219,6 +219,11 @@
   .sf-detail-nav{position:absolute; top:50%; transform:translateY(-50%); width:34px; height:34px; border-radius:50%; border:none; background:rgba(0,0,0,.45); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer;}
   .sf-detail-nav svg{width:16px;height:16px;}
   .sf-detail-prev{right:12px;} .sf-detail-next{left:12px; transform:translateY(-50%) rotate(180deg);}
+  .sf-video-wrap{grid-column:1/-1; position:relative; width:100%; padding-top:56.25%; background:#000;}
+  .sf-video-wrap iframe, .sf-video-wrap video{position:absolute; inset:0; width:100%; height:100%; border:none;}
+  .sf-video-fallback{grid-column:1/-1; padding:14px 32px 0; text-align:center;}
+  .sf-video-fallback a{color:var(--sf-accent); font-weight:700; text-decoration:none;}
+  .sf-video-fallback a:hover{text-decoration:underline;}
   .sf-detail-body{padding:32px; display:flex; flex-direction:column; gap:14px;}
   .sf-detail-name{font-family:'Rubik',sans-serif; font-weight:800; font-size:1.6rem; margin:0;}
   .sf-detail-sku{color:var(--sf-ink-faint); font-size:.8rem; font-variant-numeric:tabular-nums; margin-top:-8px;}
@@ -442,6 +447,23 @@
   function hasSale(p){ return p.salePrice !== undefined && p.salePrice !== null && p.salePrice !== '' && Number(p.salePrice) > 0 && Number(p.salePrice) < Number(p.price); }
   function effectivePrice(p){ return hasSale(p) ? Number(p.salePrice) : (Number(p.price)||0); }
   function salePct(p){ if(!hasSale(p)) return 0; return Math.round((1 - Number(p.salePrice)/Number(p.price)) * 100); }
+
+  function sfVideoEmbedHtml(url){
+    if(!url) return '';
+    var yt = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{6,})/);
+    if(yt){
+      var id = yt[1];
+      return '<div class="sf-video-wrap"><iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&mute=1&loop=1&playlist='+id+'&playsinline=1" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe></div>';
+    }
+    var drive = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+    if(drive){
+      return '<div class="sf-video-wrap"><iframe src="https://drive.google.com/file/d/'+drive[1]+'/preview" allow="autoplay" allowfullscreen loading="lazy"></iframe></div>';
+    }
+    if(/\.(mp4|webm|mov|m4v)(\?|$)/i.test(url)){
+      return '<div class="sf-video-wrap"><video src="'+esc(url)+'" autoplay muted loop playsinline controls></video></div>';
+    }
+    return '<div class="sf-video-fallback"><a href="'+esc(url)+'" target="_blank" rel="noopener">▶ צפייה בסרטון המוצר</a></div>';
+  }
 
   var sfToastTimer = null;
   function sfShowToast(msg){
@@ -1186,6 +1208,7 @@
         '<button type="button" class="sf-detail-nav sf-detail-next" id="sfDetailNext">'+ICONS.chevron+'</button>'
       ) : '') +
       '</div>' +
+      sfVideoEmbedHtml(p.videoUrl) +
       '<div class="sf-detail-body">' +
       ((p.categories||[]).length ? '<div class="sf-card-cat">'+esc((p.categories||[]).join(' · '))+'</div>' : '') +
       '<h2 class="sf-detail-name">'+esc(p.name)+'</h2>' +
