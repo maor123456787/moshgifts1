@@ -182,6 +182,8 @@
   .sf-card-oos .sf-card-img img{opacity:.45;}
   .sf-card-oos .sf-card-price{opacity:.5;}
   .sf-oos-badge{position:absolute; top:8px; right:8px; z-index:1; background:#7a2b2b; color:#f3efe6; font-size:.7rem; font-weight:700; padding:4px 9px; border-radius:3px;}
+  .sf-mii-badge{position:absolute; z-index:2; display:flex; filter:drop-shadow(0 1px 3px rgba(0,0,0,.4));}
+  .sf-mii-badge svg{display:block; width:30px; height:30px;}
   .sf-oos-note{background:var(--sf-panel2); border:1px solid #7a2b2b; color:#e0a8a8; font-size:.85rem; padding:12px 14px; border-radius:6px;}
   .sf-sale-badge{position:absolute; top:8px; left:8px; z-index:1; background:#d64545; color:#fff; font-size:.7rem; font-weight:800; padding:4px 9px; border-radius:3px;}
   .sf-price-strike{text-decoration:line-through; color:var(--sf-ink-faint); font-weight:400; font-size:.85em; margin-inline-end:6px;}
@@ -467,6 +469,13 @@
       return '<div class="sf-video-wrap"><video src="'+esc(url)+'" autoplay muted loop playsinline controls></video></div>';
     }
     return '<div class="sf-video-fallback"><a href="'+esc(url)+'" target="_blank" rel="noopener">▶ צפייה בסרטון המוצר</a></div>';
+  }
+  function sfMadeInIsraelBadgeSvg(){
+    return '<svg width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">' +
+      '<circle cx="14" cy="14" r="13" fill="#0038b8" stroke="#ffffff" stroke-width="2"/>' +
+      '<polygon points="14,6.5 20.5,17.8 7.5,17.8" fill="#ffffff"/>' +
+      '<polygon points="14,21.5 7.5,10.2 20.5,10.2" fill="#ffffff"/>' +
+      '</svg>';
   }
 
   var sfToastTimer = null;
@@ -1220,9 +1229,18 @@
       if(idx >= totalSlides) idx = 0;
       var isVideoSlide = hasVideo && idx === imgs.length;
       var onSale = hasSale(p);
+      var sfMriOffset = 8;
+      var sfCornerBadges = '';
+      if(p.madeInIsrael){
+        sfCornerBadges += '<span class="sf-mii-badge" style="top:6px;right:'+sfMriOffset+'px" title="מיוצר בישראל">'+sfMadeInIsraelBadgeSvg()+'</span>';
+        sfMriOffset += 40;
+      }
+      if(p.outOfStock){
+        sfCornerBadges += '<span class="sf-oos-badge" style="right:'+sfMriOffset+'px">אזל המלאי</span>';
+      }
       return '<div class="sf-card'+(p.outOfStock?' sf-card-oos':'')+'" data-sf-product="'+p.id+'">' +
         '<div class="sf-card-img">' + (isVideoSlide ? sfVideoEmbedHtml(p.videoUrl) : (imgs.length ? '<img src="'+imgs[idx]+'" alt="">' : ICONS.img)) +
-        (p.outOfStock ? '<span class="sf-oos-badge">אזל המלאי</span>' : '') +
+        sfCornerBadges +
         (onSale && !isVideoSlide ? '<span class="sf-sale-badge">מבצע -'+salePct(p)+'%</span>' : '') +
         (totalSlides>1 ? (
           '<button type="button" class="sf-card-nav sf-card-nav-prev" data-sf-card-prev="'+p.id+'">'+ICONS.chevron+'</button>' +
@@ -1259,6 +1277,7 @@
       '<div class="sf-detail">' +
       '<div class="sf-detail-img">' +
       (isVideoSlide ? sfVideoEmbedHtml(p.videoUrl) : (imgs.length ? '<img src="'+imgs[idx]+'" alt="">' : ICONS.img)) +
+      (p.madeInIsrael ? '<span class="sf-mii-badge" style="top:8px;right:8px" title="מיוצר בישראל">'+sfMadeInIsraelBadgeSvg()+'</span>' : '') +
       (onSale && !isVideoSlide ? '<span class="sf-sale-badge">מבצע -'+salePct(p)+'%</span>' : '') +
       (totalSlides>1 ? (
         '<button type="button" class="sf-detail-nav sf-detail-prev" id="sfDetailPrev">'+ICONS.chevron+'</button>' +
