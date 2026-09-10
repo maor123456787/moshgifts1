@@ -27,6 +27,8 @@ const addonNames = read('addon-names-en.json');
 const categoryNames = read('category-names-en.json');
 const materialNames = read('material-names-en.json');
 const subcategoryNames = read('subcategory-names-en.json');
+const sizeNames = read('size-names-en.json');
+const thicknessNames = read('thickness-names-en.json');
 
 const content = fs.readFileSync(sitePath, 'utf8');
 const marker = '<script id="sf-data" type="application/json">';
@@ -38,9 +40,12 @@ if (start < marker.length || end < 0) {
 }
 const data = JSON.parse(content.slice(start, end));
 
+const heRegex = /[֐-׿]/;
 const untranslatedNames = [];
 const untranslatedNotes = [];
 const untranslatedAddons = new Set();
+const untranslatedSizes = new Set();
+const untranslatedThickness = new Set();
 
 data.products.forEach((p) => {
   const en = productNames[p.id];
@@ -55,21 +60,33 @@ data.products.forEach((p) => {
     const addonEn = addonNames[a.name];
     if (addonEn) a.nameEn = addonEn; else untranslatedAddons.add(a.name);
   });
+
+  if (p.size && heRegex.test(p.size)) {
+    const sizeEn = sizeNames[p.size];
+    if (sizeEn) p.sizeEn = sizeEn; else untranslatedSizes.add(p.size);
+  }
+  if (p.thickness && heRegex.test(p.thickness)) {
+    const thickEn = thicknessNames[p.thickness];
+    if (thickEn) p.thicknessEn = thickEn; else untranslatedThickness.add(p.thickness);
+  }
 });
 
 data.categoryNamesEn = categoryNames;
 data.materialNamesEn = materialNames;
 data.subcategoryNamesEn = subcategoryNames;
+data.sizeNamesEn = sizeNames;
 
 const newJson = JSON.stringify(data);
 const newContent = content.slice(0, content.indexOf(marker) + marker.length) + newJson + content.slice(end);
 fs.writeFileSync(sitePath, newContent, 'utf8');
 
 console.log('Applied translations to ' + sitePath);
-console.log('Products:', data.products.length, '| untranslated names:', untranslatedNames.length, '| untranslated notes:', untranslatedNotes.length, '| untranslated addon names:', untranslatedAddons.size);
+console.log('Products:', data.products.length, '| untranslated names:', untranslatedNames.length, '| untranslated notes:', untranslatedNotes.length, '| untranslated addon names:', untranslatedAddons.size, '| untranslated sizes:', untranslatedSizes.size, '| untranslated thickness:', untranslatedThickness.size);
 if (untranslatedNames.length) { console.log('\nMissing product name translations:'); untranslatedNames.forEach(l => console.log('  ' + l)); }
 if (untranslatedNotes.length) { console.log('\nMissing product notes translations:'); untranslatedNotes.forEach(l => console.log('  ' + l)); }
 if (untranslatedAddons.size) { console.log('\nMissing addon name translations:'); untranslatedAddons.forEach(l => console.log('  ' + l)); }
+if (untranslatedSizes.size) { console.log('\nMissing size translations:'); untranslatedSizes.forEach(l => console.log('  ' + l)); }
+if (untranslatedThickness.size) { console.log('\nMissing thickness translations:'); untranslatedThickness.forEach(l => console.log('  ' + l)); }
 
 const missingCategories = (data.categories || []).filter(c => !categoryNames[c] && c !== 'מבצעים');
 if (missingCategories.length) console.log('\nMissing category translations:', missingCategories.join(', '));
