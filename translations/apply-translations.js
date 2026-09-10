@@ -29,6 +29,7 @@ const materialNames = read('material-names-en.json');
 const subcategoryNames = read('subcategory-names-en.json');
 const sizeNames = read('size-names-en.json');
 const thicknessNames = read('thickness-names-en.json');
+const miscText = read('misc-text-en.json');
 
 const content = fs.readFileSync(sitePath, 'utf8');
 const marker = '<script id="sf-data" type="application/json">';
@@ -76,6 +77,14 @@ data.materialNamesEn = materialNames;
 data.subcategoryNamesEn = subcategoryNames;
 data.sizeNamesEn = sizeNames;
 
+const untranslatedMisc = [];
+['storefrontTagline', 'businessHours', 'businessAddress'].forEach((field) => {
+  const val = data[field];
+  if (!val) return;
+  const en = miscText[field] && miscText[field][val];
+  if (en) data[field + 'En'] = en; else untranslatedMisc.push(field);
+});
+
 const newJson = JSON.stringify(data);
 const newContent = content.slice(0, content.indexOf(marker) + marker.length) + newJson + content.slice(end);
 fs.writeFileSync(sitePath, newContent, 'utf8');
@@ -87,6 +96,7 @@ if (untranslatedNotes.length) { console.log('\nMissing product notes translation
 if (untranslatedAddons.size) { console.log('\nMissing addon name translations:'); untranslatedAddons.forEach(l => console.log('  ' + l)); }
 if (untranslatedSizes.size) { console.log('\nMissing size translations:'); untranslatedSizes.forEach(l => console.log('  ' + l)); }
 if (untranslatedThickness.size) { console.log('\nMissing thickness translations:'); untranslatedThickness.forEach(l => console.log('  ' + l)); }
+if (untranslatedMisc.length) { console.log('\nMissing misc text translations (tagline/hours/address changed in Site 1):'); untranslatedMisc.forEach(l => console.log('  ' + l)); }
 
 const missingCategories = (data.categories || []).filter(c => !categoryNames[c] && c !== 'מבצעים');
 if (missingCategories.length) console.log('\nMissing category translations:', missingCategories.join(', '));
