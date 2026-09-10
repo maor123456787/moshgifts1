@@ -87,13 +87,21 @@
     border-bottom:1px solid var(--sf-line); padding:14px 20px; display:grid;
     grid-template-columns:1fr auto 1fr; align-items:center; gap:16px;
   }
-  @media (max-width:640px){ .sf-topnav{grid-template-columns:1fr; justify-items:center; gap:10px;} .sf-topnav-spacer{display:none;} }
+  @media (max-width:640px){ .sf-topnav{grid-template-columns:1fr; justify-items:center; gap:10px;} }
   .sf-topnav-brand{
     font-family:'Rubik',sans-serif; font-weight:800; font-size:1.05rem; color:var(--sf-ink);
     background:none; border:none; cursor:pointer; letter-spacing:.01em; justify-self:start;
   }
   .sf-toplinks{display:flex; gap:6px; justify-self:center; flex-wrap:wrap; justify-content:center;}
   .sf-topnav-spacer{justify-self:end;}
+  .sf-lang-switch{display:flex; gap:4px;}
+  .sf-lang-opt{
+    font-size:.7rem; font-weight:700; color:var(--sf-ink-soft); background:transparent;
+    border:1px solid var(--sf-line); border-radius:999px; padding:4px 10px; cursor:pointer;
+    white-space:nowrap; transition:background .15s,color .15s,border-color .15s;
+  }
+  .sf-lang-opt.active{background:var(--sf-accent); border-color:var(--sf-accent); color:var(--sf-accent-ink);}
+  .sf-lang-opt:not(.active):hover{border-color:var(--sf-ink-faint); color:var(--sf-ink);}
   .sf-toplink{
     font-family:inherit; font-size:.85rem; font-weight:600; color:var(--sf-ink-soft);
     background:none; border:none; padding:8px 12px; border-radius:4px; cursor:pointer; transition:color .15s,background .15s;
@@ -526,8 +534,62 @@
     window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
   }
 
-  var SF = { page:'home', categoryFilter:'', sizeFilter:'', materialFilter:'', madeInIsraelFilter:false, subcategoryFilters:{}, sort:'', cardImageIndex:{},
+  var SF = { page:'home', language:'he', categoryFilter:'', sizeFilter:'', materialFilter:'', madeInIsraelFilter:false, subcategoryFilters:{}, sort:'', cardImageIndex:{},
              cart:{}, cartAddons:{}, cartNotes:{}, activeProduct:null, activeProductImageIndex:0, detailQty:1, cartOpen:false, customerName:'', customerPhone:'', shareToast:'', categoriesExpanded:false };
+
+  var LANGUAGES = [
+    { code:'he', label:'עברית', dir:'rtl' },
+    { code:'en', label:'English', dir:'ltr' }
+  ];
+  var T = {
+    en: {
+      nav_home:'Home', nav_shop:'Shop', nav_workshops:'Workshops', nav_about:'About', nav_contact:'Contact',
+      hero_eyebrow:'Personalized Gifts · Laser Engraving', cta_shop:'Shop Now', cta_workshops:'Workshops', scroll:'Scroll',
+      cat_cta:'Shop', about_teaser:'Every product is engraved and made especially for you, with personal care and attention to detail.', more_about:'More About Us',
+      nav_all:'All', show_less:'▲ Show less', show_all_cats:'▾ All categories',
+      subcategory:'Subcategory', size:'Size', material:'Material', made_in_israel_only:'Made in Israel only',
+      sort:'Sort', sort_default:'Default', sort_price_asc:'Price: low to high', sort_price_desc:'Price: high to low', sort_name_asc:'Name: A-Z', sort_name_desc:'Name: Z-A',
+      no_products_filtered:'No products match this filter', no_products_yet:'Products coming soon',
+      made_in_israel:'Made in Israel', israel:'Israel', out_of_stock:'Out of stock', sale:'Sale', sku:'SKU',
+      copy_link:'Copy link', share_whatsapp:'Share on WhatsApp', out_of_stock_note:'Out of stock - this product is currently unavailable',
+      addons:'Add-ons', free:'Free', product_notes:'Product notes (optional)', note_placeholder:'e.g. engrave the name David',
+      min_order_qty:'Minimum order quantity:', add_to_cart:'Add to cart',
+      my_cart:'My Cart', cart_empty:'Cart is empty', note_label:'Note:', saved_on_sale:'You saved {0} with the sale', edit_item:'Edit item',
+      saved_total:'Saved thanks to sales:', estimated_total:'Estimated total', min_order_note:'Minimum order {0} - {1} more needed',
+      full_name:'Full name', name_placeholder:'Your name', phone:'Phone', send_order:'Send order for review & confirmation',
+      continue_shopping:'Continue shopping', not_final_purchase:'This isn\'t a final purchase - it\'s a quote request, we\'ll get back to you on WhatsApp.',
+      footer_tag:'MOSH GIFTS · Personalized Gifts'
+    }
+  };
+  function t(key, fallback){
+    var lang = SF.language || 'he';
+    if(lang !== 'he' && T[lang] && T[lang][key] !== undefined) return T[lang][key];
+    return fallback;
+  }
+  function tf(key, fallback, args){
+    var s = t(key, fallback);
+    args.forEach(function(a, i){ s = s.replace('{'+i+'}', a); });
+    return s;
+  }
+  function sfSaveLanguage(){
+    try{ localStorage.setItem('mg_sf_lang', SF.language); }catch(e){}
+  }
+  function sfLoadLanguage(){
+    try{
+      var l = localStorage.getItem('mg_sf_lang');
+      return LANGUAGES.some(function(x){ return x.code===l; }) ? l : 'he';
+    }catch(e){ return 'he'; }
+  }
+  function sfApplyLanguageAttrs(){
+    var langObj = LANGUAGES.filter(function(x){ return x.code===SF.language; })[0] || LANGUAGES[0];
+    document.documentElement.setAttribute('lang', langObj.code);
+    document.documentElement.setAttribute('dir', langObj.dir);
+  }
+  function tplSfLanguageSwitcher(){
+    return '<div class="sf-lang-switch" id="sfLangSwitch">' + LANGUAGES.map(function(l){
+      return '<button type="button" class="sf-lang-opt'+(SF.language===l.code?' active':'')+'" data-sf-lang="'+l.code+'" lang="'+l.code+'" dir="'+l.dir+'">'+esc(l.label)+'</button>';
+    }).join('') + '</div>';
+  }
 
   var WIZ_STEPS = 8;
   var WZ = {
@@ -706,6 +768,7 @@
   }
 
   function renderStorefront(){
+    sfApplyLanguageAttrs();
     var app = document.getElementById('app');
     var panelBox = document.querySelector('#sfDetailOverlay .sf-panel-box');
     var panelScroll = panelBox ? panelBox.scrollTop : null;
@@ -748,8 +811,8 @@
     }
     return '<div class="sf-topnav">' +
       '<button type="button" class="sf-topnav-brand" data-sf-page="home">MOSH GIFTS</button>' +
-      '<div class="sf-toplinks">' + link('home','ראשי') + link('shop','חנות') + link('workshops','סדנאות') + link('about','אודות') + link('contact','צור קשר') + '</div>' +
-      '<div class="sf-topnav-spacer"></div>' +
+      '<div class="sf-toplinks">' + link('home',t('nav_home','ראשי')) + link('shop',t('nav_shop','חנות')) + link('workshops',t('nav_workshops','סדנאות')) + link('about',t('nav_about','אודות')) + link('contact',t('nav_contact','צור קשר')) + '</div>' +
+      '<div class="sf-topnav-spacer">' + tplSfLanguageSwitcher() + '</div>' +
       '</div>';
   }
 
@@ -779,7 +842,7 @@
         var onSale = hasSale(p);
         return '<div class="sf-carousel-slide" data-sf-product="'+p.id+'">' +
           '<img src="'+p.images[0]+'" alt="'+esc(p.name)+'">' +
-          (onSale ? '<span class="sf-sale-badge">מבצע -'+salePct(p)+'%</span>' : '') +
+          (onSale ? '<span class="sf-sale-badge">'+t('sale','מבצע')+' -'+salePct(p)+'%</span>' : '') +
           '<div class="sf-carousel-caption"><div class="sf-carousel-name">'+esc(p.name)+'</div><div class="sf-carousel-price">' +
           (onSale ? '<span class="sf-price-strike">'+money(p.price)+'</span><span class="sf-price-sale">'+money(p.salePrice)+'</span>' : money(p.price)) +
           '</div></div>' +
@@ -796,14 +859,14 @@
     var cats = sfCategories();
     return '<div class="sf-hero"><div class="sf-hero-bg"></div>' +
       '<img class="sf-hero-logo" src="'+LOGO_B64+'" alt="">' +
-      '<div class="sf-eyebrow">מתנות מותאמות אישית · חריטת לייזר</div>' +
+      '<div class="sf-eyebrow">'+t('hero_eyebrow','מתנות מותאמות אישית · חריטת לייזר')+'</div>' +
       '<h1 class="sf-wordmark">MOSH GIFTS</h1>' +
       '<p class="sf-tagline">'+esc(TAGLINE)+'</p>' +
       '<div class="sf-hero-ctas" style="position:relative;z-index:1;margin-top:26px">' +
-      '<button type="button" class="sf-btn sf-btn-primary" data-sf-page="shop">כניסה לחנות</button>' +
-      '<button type="button" class="sf-btn sf-btn-ghost" data-sf-page="workshops">כניסה לסדנאות</button>' +
+      '<button type="button" class="sf-btn sf-btn-primary" data-sf-page="shop">'+t('cta_shop','כניסה לחנות')+'</button>' +
+      '<button type="button" class="sf-btn sf-btn-ghost" data-sf-page="workshops">'+t('cta_workshops','כניסה לסדנאות')+'</button>' +
       '</div>' +
-      '<button type="button" class="sf-scrolldown" id="sfScrollDown" style="background:none;border:none;">גלילה <span style="display:inline-block;transform:rotate(90deg)">'+ICONS.chevron+'</span></button>' +
+      '<button type="button" class="sf-scrolldown" id="sfScrollDown" style="background:none;border:none;">'+t('scroll','גלילה')+' <span style="display:inline-block;transform:rotate(90deg)">'+ICONS.chevron+'</span></button>' +
       '</div>' +
       '<div class="sf-section" id="sfHomeBelow">' +
       tplSfHeroCarousel() +
@@ -811,11 +874,11 @@
         var img = sfCategoryImage(c);
         return '<button type="button" class="sf-cat-card" data-sf-cat-tile="'+esc(c)+'">' +
           (img ? '<img src="'+img+'" alt="">' : '') +
-          '<div class="sf-cat-card-overlay"><span class="sf-cat-card-name">'+esc(c)+'</span><span class="sf-cat-card-cta">לחנות</span></div>' +
+          '<div class="sf-cat-card-overlay"><span class="sf-cat-card-name">'+esc(c)+'</span><span class="sf-cat-card-cta">'+t('cat_cta','לחנות')+'</span></div>' +
           '</button>';
       }).join('') + '</div>' : '') +
-      '<div class="sf-about-teaser"><p>כל מוצר נחרט ומיוצר במיוחד עבורכם, בליווי אישי ותשומת לב לפרטים הקטנים.</p>' +
-      '<button type="button" class="sf-btn sf-btn-ghost" data-sf-page="about">עוד עלינו</button></div>' +
+      '<div class="sf-about-teaser"><p>'+t('about_teaser','כל מוצר נחרט ומיוצר במיוחד עבורכם, בליווי אישי ותשומת לב לפרטים הקטנים.')+'</p>' +
+      '<button type="button" class="sf-btn sf-btn-ghost" data-sf-page="about">'+t('more_about','עוד עלינו')+'</button></div>' +
       '</div>';
   }
 
@@ -1157,8 +1220,8 @@
       return '<button type="button" class="sf-pill'+(SF.categoryFilter===val?' active':'')+'" data-sf-cat="'+esc(val)+'">'+esc(label)+'</button>';
     }
     var expanded = !!SF.categoriesExpanded;
-    return '<div class="sf-nav'+(expanded?' expanded':'')+'" id="sfProducts">' + pill('','הכל') + cats.map(function(c){ return pill(c,c); }).join('') +
-      '<button type="button" class="sf-nav-toggle" id="sfNavToggle" hidden>' + (expanded ? '▲ הצג פחות' : '▾ כל הקטגוריות') + '</button>' +
+    return '<div class="sf-nav'+(expanded?' expanded':'')+'" id="sfProducts">' + pill('',t('nav_all','הכל')) + cats.map(function(c){ return pill(c,c); }).join('') +
+      '<button type="button" class="sf-nav-toggle" id="sfNavToggle" hidden>' + (expanded ? t('show_less','▲ הצג פחות') : t('show_all_cats','▾ כל הקטגוריות')) + '</button>' +
       '</div>';
   }
   function sfMeasureCategoryNav(){
@@ -1200,34 +1263,34 @@
     }
     var html = '<div class="sf-sidebar">';
     if(subcats.length){
-      html += '<div class="sf-filter-group"><div class="sf-filter-title">תת-קטגוריה</div>' +
+      html += '<div class="sf-filter-group"><div class="sf-filter-title">'+t('subcategory','תת-קטגוריה')+'</div>' +
         '<div class="sf-checkbox-list">' + subcats.map(function(s){
           var checked = SF.subcategoryFilters[s] ? ' checked' : '';
           return '<label class="sf-checkbox-opt"><input type="checkbox" data-sf-subcat="'+esc(s)+'"'+checked+'> '+esc(s)+'</label>';
         }).join('') + '</div></div>';
     }
     if(sizes.length){
-      html += '<div class="sf-filter-group"><div class="sf-filter-title">גודל</div>' +
-        '<select class="sf-select" id="sfSizeFilter">' + opt('','הכל',SF.sizeFilter) +
+      html += '<div class="sf-filter-group"><div class="sf-filter-title">'+t('size','גודל')+'</div>' +
+        '<select class="sf-select" id="sfSizeFilter">' + opt('',t('nav_all','הכל'),SF.sizeFilter) +
         sizes.map(function(s){ return opt(s,s,SF.sizeFilter); }).join('') + '</select></div>';
     }
     if(mats.length){
-      html += '<div class="sf-filter-group"><div class="sf-filter-title">סוג חומר</div>' +
-        '<select class="sf-select" id="sfMaterialFilter">' + opt('','הכל',SF.materialFilter) +
+      html += '<div class="sf-filter-group"><div class="sf-filter-title">'+t('material','סוג חומר')+'</div>' +
+        '<select class="sf-select" id="sfMaterialFilter">' + opt('',t('nav_all','הכל'),SF.materialFilter) +
         mats.map(function(m){ return opt(m,m,SF.materialFilter); }).join('') + '</select></div>';
     }
     if(PRODUCTS.some(function(p){ return p.madeInIsrael; })){
       html += '<div class="sf-filter-group"><div class="sf-checkbox-list">' +
-        '<label class="sf-checkbox-opt"><input type="checkbox" id="sfMadeInIsraelFilter"'+(SF.madeInIsraelFilter?' checked':'')+'> מיוצר בישראל בלבד</label>' +
+        '<label class="sf-checkbox-opt"><input type="checkbox" id="sfMadeInIsraelFilter"'+(SF.madeInIsraelFilter?' checked':'')+'> '+t('made_in_israel_only','מיוצר בישראל בלבד')+'</label>' +
         '</div></div>';
     }
-    html += '<div class="sf-filter-group"><div class="sf-filter-title">מיון</div>' +
+    html += '<div class="sf-filter-group"><div class="sf-filter-title">'+t('sort','מיון')+'</div>' +
       '<select class="sf-select" id="sfSort">' +
-      opt('','ברירת מחדל',SF.sort) +
-      opt('price_asc','מחיר: מהזול ליקר',SF.sort) +
-      opt('price_desc','מחיר: מהיקר לזול',SF.sort) +
-      opt('name_asc','שם: א-ת',SF.sort) +
-      opt('name_desc','שם: ת-א',SF.sort) +
+      opt('',t('sort_default','ברירת מחדל'),SF.sort) +
+      opt('price_asc',t('sort_price_asc','מחיר: מהזול ליקר'),SF.sort) +
+      opt('price_desc',t('sort_price_desc','מחיר: מהיקר לזול'),SF.sort) +
+      opt('name_asc',t('sort_name_asc','שם: א-ת'),SF.sort) +
+      opt('name_desc',t('sort_name_desc','שם: ת-א'),SF.sort) +
       '</select></div>';
     html += '</div>';
     return html;
@@ -1235,7 +1298,7 @@
 
   function tplSfGrid(){
     var list = sfFilteredProducts();
-    if(!list.length) return '<div class="sf-empty">' + (PRODUCTS.length ? 'לא נמצאו מוצרים תואמים לסינון' : 'בקרוב יתווספו כאן מוצרים') + '</div>';
+    if(!list.length) return '<div class="sf-empty">' + (PRODUCTS.length ? t('no_products_filtered','לא נמצאו מוצרים תואמים לסינון') : t('no_products_yet','בקרוב יתווספו כאן מוצרים')) + '</div>';
     return '<div class="sf-grid">' + list.map(function(p){
       var imgs = p.images||[];
       var cats = p.categories||[];
@@ -1247,15 +1310,15 @@
       var onSale = hasSale(p);
       var sfCornerBadges = '';
       if(p.madeInIsrael){
-        sfCornerBadges += '<span class="sf-mii-ribbon" title="מיוצר בישראל">'+sfMadeInIsraelBadgeSvg()+' ישראל</span>';
+        sfCornerBadges += '<span class="sf-mii-ribbon" title="'+t('made_in_israel','מיוצר בישראל')+'">'+sfMadeInIsraelBadgeSvg()+' '+t('israel','ישראל')+'</span>';
       }
       if(p.outOfStock){
-        sfCornerBadges += '<span class="sf-oos-badge"'+(p.madeInIsrael?' style="top:46px"':'')+'>אזל המלאי</span>';
+        sfCornerBadges += '<span class="sf-oos-badge"'+(p.madeInIsrael?' style="top:46px"':'')+'>'+t('out_of_stock','אזל המלאי')+'</span>';
       }
       return '<div class="sf-card'+(p.outOfStock?' sf-card-oos':'')+'" data-sf-product="'+p.id+'">' +
         '<div class="sf-card-img">' + (isVideoSlide ? sfVideoEmbedHtml(p.videoUrl) : (imgs.length ? '<img src="'+imgs[idx]+'" alt="">' : ICONS.img)) +
         sfCornerBadges +
-        (onSale && !isVideoSlide ? '<span class="sf-sale-badge">מבצע -'+salePct(p)+'%</span>' : '') +
+        (onSale && !isVideoSlide ? '<span class="sf-sale-badge">'+t('sale','מבצע')+' -'+salePct(p)+'%</span>' : '') +
         (totalSlides>1 ? (
           '<button type="button" class="sf-card-nav sf-card-nav-prev" data-sf-card-prev="'+p.id+'">'+ICONS.chevron+'</button>' +
           '<button type="button" class="sf-card-nav sf-card-nav-next" data-sf-card-next="'+p.id+'">'+ICONS.chevron+'</button>' +
@@ -1265,7 +1328,7 @@
         '<div class="sf-card-body">' +
         (cats.length ? '<div class="sf-card-cat">'+esc(cats[0])+'</div>' : '') +
         '<div class="sf-card-name">'+esc(p.name)+'</div>' +
-        '<div class="sf-card-sku">מק"ט '+esc(p.sku||'-')+'</div>' +
+        '<div class="sf-card-sku">'+t('sku','מק"ט')+' '+esc(p.sku||'-')+'</div>' +
         (onSale ?
           '<div class="sf-card-price"><span class="sf-price-strike">'+money(p.price)+'</span><span class="sf-price-sale">'+money(p.salePrice)+'</span></div>' :
           '<div class="sf-card-price">'+money(p.price)+'</div>') +
@@ -1291,8 +1354,8 @@
       '<div class="sf-detail">' +
       '<div class="sf-detail-img">' +
       (isVideoSlide ? sfVideoEmbedHtml(p.videoUrl) : (imgs.length ? '<img src="'+imgs[idx]+'" alt="">' : ICONS.img)) +
-      (p.madeInIsrael ? '<span class="sf-mii-ribbon" title="מיוצר בישראל">'+sfMadeInIsraelBadgeSvg()+' ישראל</span>' : '') +
-      (onSale && !isVideoSlide ? '<span class="sf-sale-badge">מבצע -'+salePct(p)+'%</span>' : '') +
+      (p.madeInIsrael ? '<span class="sf-mii-ribbon" title="'+t('made_in_israel','מיוצר בישראל')+'">'+sfMadeInIsraelBadgeSvg()+' '+t('israel','ישראל')+'</span>' : '') +
+      (onSale && !isVideoSlide ? '<span class="sf-sale-badge">'+t('sale','מבצע')+' -'+salePct(p)+'%</span>' : '') +
       (totalSlides>1 ? (
         '<button type="button" class="sf-detail-nav sf-detail-prev" id="sfDetailPrev">'+ICONS.chevron+'</button>' +
         '<button type="button" class="sf-detail-nav sf-detail-next" id="sfDetailNext">'+ICONS.chevron+'</button>'
@@ -1301,60 +1364,60 @@
       '<div class="sf-detail-body">' +
       ((p.categories||[]).length ? '<div class="sf-card-cat">'+esc((p.categories||[]).join(' · '))+'</div>' : '') +
       '<h2 class="sf-detail-name">'+esc(p.name)+'</h2>' +
-      '<div class="sf-detail-sku">מק"ט '+esc(p.sku||'-')+'</div>' +
+      '<div class="sf-detail-sku">'+t('sku','מק"ט')+' '+esc(p.sku||'-')+'</div>' +
       (meta ? '<div class="sf-detail-meta">'+esc(meta)+'</div>' : '') +
       (onSale ?
         '<div class="sf-detail-price"><span class="sf-price-strike">'+money(p.price)+'</span><span class="sf-price-sale">'+money(p.salePrice)+'</span></div>' :
         '<div class="sf-detail-price">'+money(p.price)+'</div>') +
       '<div class="sf-share-row">' +
-      '<button type="button" class="sf-share-btn" id="sfShareCopy" data-sf-share-copy="'+p.id+'">'+ICONS.link+' העתקת קישור</button>' +
-      '<button type="button" class="sf-share-btn sf-share-wa" id="sfShareWa" data-sf-share-wa="'+p.id+'">'+ICONS.whatsapp+' שיתוף בוואטסאפ</button>' +
+      '<button type="button" class="sf-share-btn" id="sfShareCopy" data-sf-share-copy="'+p.id+'">'+ICONS.link+' '+t('copy_link','העתקת קישור')+'</button>' +
+      '<button type="button" class="sf-share-btn sf-share-wa" id="sfShareWa" data-sf-share-wa="'+p.id+'">'+ICONS.whatsapp+' '+t('share_whatsapp','שיתוף בוואטסאפ')+'</button>' +
       '</div>' +
       (p.notes ? '<p class="sf-detail-desc">'+esc(p.notes)+'</p>' : '') +
-      (p.outOfStock ? '<div class="sf-oos-note">אזל המלאי - המוצר אינו זמין להזמנה כרגע</div>' : (((p.addons||[]).length ? '<div class="sf-addons"><div class="sf-filter-title">תוספות</div>' +
+      (p.outOfStock ? '<div class="sf-oos-note">'+t('out_of_stock_note','אזל המלאי - המוצר אינו זמין להזמנה כרגע')+'</div>' : (((p.addons||[]).length ? '<div class="sf-addons"><div class="sf-filter-title">'+t('addons','תוספות')+'</div>' +
         p.addons.map(function(a){
           var checked = (SF.cartAddons[p.id]||{})[a.id] ? ' checked' : '';
           return '<label class="sf-addon-opt"><input type="checkbox" data-sf-addon-toggle="'+p.id+'|'+a.id+'"'+checked+'> ' +
-            esc(a.name) + ' (' + (Number(a.price) > 0 ? '+'+money(a.price) : 'חינם') + ')</label>';
+            esc(a.name) + ' (' + (Number(a.price) > 0 ? '+'+money(a.price) : t('free','חינם')) + ')</label>';
         }).join('') + '</div>' : '') +
-      '<div class="sf-field"><label for="sfNoteInput">הערות למוצר (לא חובה)</label>' +
-      '<textarea class="sf-input" id="sfNoteInput" data-sf-note-for="'+p.id+'" placeholder="לדוגמה: לחרוט את השם דוד" rows="2">'+esc(SF.cartNotes[p.id]||'')+'</textarea></div>' +
-      (minQty > 1 ? '<div class="sf-minqty-note">כמות מינימלית להזמנה: '+minQty+'</div>' : '') +
+      '<div class="sf-field"><label for="sfNoteInput">'+t('product_notes','הערות למוצר (לא חובה)')+'</label>' +
+      '<textarea class="sf-input" id="sfNoteInput" data-sf-note-for="'+p.id+'" placeholder="'+t('note_placeholder','לדוגמה: לחרוט את השם דוד')+'" rows="2">'+esc(SF.cartNotes[p.id]||'')+'</textarea></div>' +
+      (minQty > 1 ? '<div class="sf-minqty-note">'+t('min_order_qty','כמות מינימלית להזמנה:')+' '+minQty+'</div>' : '') +
       '<div class="sf-stepper">' +
       '<button type="button" id="sfDetailQtyMinus" '+(qty<=minQty?'disabled':'')+'>−</button>' +
       '<span class="qty">'+qty+'</span>' +
       '<button type="button" id="sfDetailQtyPlus">+</button>' +
       '</div>' +
-      '<button type="button" class="sf-btn sf-btn-primary" id="sfAddToCart" data-sf-add="'+p.id+'">הוספה לסל</button>')) +
+      '<button type="button" class="sf-btn sf-btn-primary" id="sfAddToCart" data-sf-add="'+p.id+'">'+t('add_to_cart','הוספה לסל')+'</button>')) +
       '</div></div></div></div>';
   }
 
   function tplSfCartDrawer(){
     return '<div class="sf-overlay" id="sfCartOverlay" style="justify-content:flex-start;padding:0">' +
       '<div class="sf-cart-drawer">' +
-      '<div class="sf-cart-head"><h3>הסל שלי</h3><button type="button" class="sf-close" id="sfCartClose" style="position:static">'+ICONS.x+'</button></div>' +
+      '<div class="sf-cart-head"><h3>'+t('my_cart','הסל שלי')+'</h3><button type="button" class="sf-close" id="sfCartClose" style="position:static">'+ICONS.x+'</button></div>' +
       '<div class="sf-cart-items">' + tplSfCartItemsInner() + '</div>' +
       '<div class="sf-cart-foot" id="sfCartFoot">' + tplSfCartFootInner() + '</div>' +
       '</div></div>';
   }
   function tplSfCartItemsInner(){
     var entries = sfCartEntries();
-    if(!entries.length) return '<p class="sf-empty" style="padding:30px 0">הסל ריק</p>';
+    if(!entries.length) return '<p class="sf-empty" style="padding:30px 0">'+t('cart_empty','הסל ריק')+'</p>';
     return entries.map(function(e){
       var img = (e.product.images||[])[0];
       return '<div class="sf-cart-item">' +
         (img ? '<img src="'+img+'" alt="">' : '') +
         '<div class="sf-cart-item-info"><div class="sf-cart-item-name">'+esc(e.product.name)+'</div>' +
-        '<div class="sf-cart-item-sku">מק"ט '+esc(e.product.sku||'-')+'</div>' +
+        '<div class="sf-cart-item-sku">'+t('sku','מק"ט')+' '+esc(e.product.sku||'-')+'</div>' +
         (e.addons.length ? '<div class="sf-cart-item-addons">' + e.addons.map(function(a){
           return esc(a.name) + (Number(a.price)>0 ? ' (+'+money(a.price)+')' : '');
         }).join(', ') + '</div>' : '') +
-        (e.note ? '<div class="sf-cart-item-note">הערה: '+esc(e.note)+'</div>' : '') +
+        (e.note ? '<div class="sf-cart-item-note">'+t('note_label','הערה:')+' '+esc(e.note)+'</div>' : '') +
         (e.onSale ?
           '<div class="sf-cart-item-price"><span class="sf-price-strike">'+money(e.originalLineTotal)+'</span><span class="sf-price-sale">'+money(e.lineTotal)+'</span></div>' +
-          '<div class="sf-cart-item-saved">חסכת '+money(e.saved)+' במבצע</div>' :
+          '<div class="sf-cart-item-saved">'+tf('saved_on_sale','חסכת {0} במבצע',[money(e.saved)])+'</div>' :
           '<div class="sf-cart-item-price">'+money(e.lineTotal)+'</div>') +
-        '<button type="button" class="sf-cart-item-edit" data-sf-edit-cart-item="'+e.product.id+'">עריכת פריט</button>' +
+        '<button type="button" class="sf-cart-item-edit" data-sf-edit-cart-item="'+e.product.id+'">'+t('edit_item','עריכת פריט')+'</button>' +
         '</div>' +
         '<div class="sf-stepper">' +
         '<button type="button" data-sf-qty-minus="'+e.product.id+'">−</button>' +
@@ -1370,20 +1433,20 @@
     var total = sfCartTotal();
     var saved = sfCartSaved();
     var belowMin = MIN_ORDER>0 && total < MIN_ORDER;
-    return (saved>0 ? '<div class="sf-cart-saved-total">חסכת בזכות מבצעים: '+money(saved)+'</div>' : '') +
-      '<div class="sf-cart-total"><span>סה"כ משוער</span><span>'+money(total)+'</span></div>' +
-      (belowMin ? '<p style="color:var(--sf-accent);font-size:.8rem;margin:0 0 4px">מינימום להזמנה '+money(MIN_ORDER)+' - נותרו '+money(MIN_ORDER-total)+' להשלמה</p>' : '') +
-      '<div class="sf-field"><label for="sfName">שם מלא</label><input class="sf-input" id="sfName" value="'+esc(SF.customerName)+'" placeholder="השם שלך"></div>' +
-      '<div class="sf-field"><label for="sfPhone">טלפון</label><input class="sf-input" id="sfPhone" value="'+esc(SF.customerPhone)+'" placeholder="05X-XXXXXXX"></div>' +
+    return (saved>0 ? '<div class="sf-cart-saved-total">'+t('saved_total','חסכת בזכות מבצעים:')+' '+money(saved)+'</div>' : '') +
+      '<div class="sf-cart-total"><span>'+t('estimated_total','סה"כ משוער')+'</span><span>'+money(total)+'</span></div>' +
+      (belowMin ? '<p style="color:var(--sf-accent);font-size:.8rem;margin:0 0 4px">'+tf('min_order_note','מינימום להזמנה {0} - נותרו {1} להשלמה',[money(MIN_ORDER),money(MIN_ORDER-total)])+'</p>' : '') +
+      '<div class="sf-field"><label for="sfName">'+t('full_name','שם מלא')+'</label><input class="sf-input" id="sfName" value="'+esc(SF.customerName)+'" placeholder="'+t('name_placeholder','השם שלך')+'"></div>' +
+      '<div class="sf-field"><label for="sfPhone">'+t('phone','טלפון')+'</label><input class="sf-input" id="sfPhone" value="'+esc(SF.customerPhone)+'" placeholder="05X-XXXXXXX"></div>' +
       (canSend
-        ? '<a class="sf-btn sf-btn-primary" href="'+sfWaHref()+'" target="_blank" rel="noopener" id="sfSendWhatsapp">שליחת ההזמנה לבדיקה ואישור</a>'
-        : '<button type="button" class="sf-btn sf-btn-primary" disabled>שליחת ההזמנה לבדיקה ואישור</button>') +
-      '<button type="button" class="sf-btn sf-btn-continue" id="sfContinueShopping">המשך קנייה</button>' +
-      '<p style="color:var(--sf-ink-faint);font-size:.76rem;margin:0;line-height:1.5">לא זו רכישה סופית - זו בקשת הצעת מחיר, נחזור אליך בוואטסאפ.</p>';
+        ? '<a class="sf-btn sf-btn-primary" href="'+sfWaHref()+'" target="_blank" rel="noopener" id="sfSendWhatsapp">'+t('send_order','שליחת ההזמנה לבדיקה ואישור')+'</a>'
+        : '<button type="button" class="sf-btn sf-btn-primary" disabled>'+t('send_order','שליחת ההזמנה לבדיקה ואישור')+'</button>') +
+      '<button type="button" class="sf-btn sf-btn-continue" id="sfContinueShopping">'+t('continue_shopping','המשך קנייה')+'</button>' +
+      '<p style="color:var(--sf-ink-faint);font-size:.76rem;margin:0;line-height:1.5">'+t('not_final_purchase','לא זו רכישה סופית - זו בקשת הצעת מחיר, נחזור אליך בוואטסאפ.')+'</p>';
   }
 
   function tplSfFooter(){
-    return '<div class="sf-footer"><div>MOSH GIFTS · מתנות מותאמות אישית</div></div>' +
+    return '<div class="sf-footer"><div>'+t('footer_tag','MOSH GIFTS · מתנות מותאמות אישית')+'</div></div>' +
       (sfCartCount()>0 ? '<button type="button" class="sf-cart-fab" id="sfCartOpenBtn">'+ICONS.cart+'<span class="sf-cart-count">'+sfCartCount()+'</span></button>' : '');
   }
 
@@ -1420,6 +1483,15 @@
   function wireStorefront(){
     Array.prototype.forEach.call(document.querySelectorAll('[data-sf-page]'), function(b){
       b.addEventListener('click', function(){ sfGoPage(b.getAttribute('data-sf-page')); });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-sf-lang]'), function(b){
+      b.addEventListener('click', function(){
+        var lang = b.getAttribute('data-sf-lang');
+        if(lang === SF.language) return;
+        SF.language = lang;
+        sfSaveLanguage();
+        renderStorefront();
+      });
     });
     Array.prototype.forEach.call(document.querySelectorAll('[data-wz-scroll]'), function(b){
       b.addEventListener('click', function(){
@@ -1616,6 +1688,7 @@
 
   if('scrollRestoration' in history){ try{ history.scrollRestoration = 'manual'; }catch(e){} }
   sfLoadCart();
+  SF.language = sfLoadLanguage();
   SF.page = sfLoadPage();
   try{
     var sharedPage = new URLSearchParams(location.search).get('page');
