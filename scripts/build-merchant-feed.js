@@ -105,6 +105,8 @@ items.forEach((it) => {
   xml += '<g:condition>' + it.condition + '</g:condition>\n';
   xml += '<g:brand>MOSH GIFTS</g:brand>\n';
   xml += '<g:identifier_exists>no</g:identifier_exists>\n';
+  xml += '<g:shipping>\n<g:country>IL</g:country>\n<g:service>Standard shipping</g:service>\n<g:price>45.00 ILS</g:price>\n<g:min_handling_time>1</g:min_handling_time>\n<g:max_handling_time>5</g:max_handling_time>\n<g:min_transit_time>1</g:min_transit_time>\n<g:max_transit_time>5</g:max_transit_time>\n</g:shipping>\n';
+  xml += '<g:shipping>\n<g:country>IL</g:country>\n<g:service>' + xmlEsc('איסוף עצמי') + '</g:service>\n<g:price>0.00 ILS</g:price>\n<g:min_handling_time>1</g:min_handling_time>\n<g:max_handling_time>5</g:max_handling_time>\n<g:min_transit_time>1</g:min_transit_time>\n<g:max_transit_time>5</g:max_transit_time>\n</g:shipping>\n';
   xml += '</item>\n';
 });
 

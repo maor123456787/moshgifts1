@@ -16,6 +16,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>B1001</g:id>
@@ -30,6 +48,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>C1001</g:id>
@@ -45,6 +81,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>C1002</g:id>
@@ -58,6 +112,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>C1003</g:id>
@@ -72,6 +144,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>A1002</g:id>
@@ -84,6 +174,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>A1003</g:id>
@@ -97,6 +205,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>D1001</g:id>
@@ -109,6 +235,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>A1004</g:id>
@@ -122,6 +266,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1001</g:id>
@@ -135,6 +297,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1002</g:id>
@@ -147,6 +327,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1003</g:id>
@@ -160,6 +358,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>C1004</g:id>
@@ -172,6 +388,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1006</g:id>
@@ -185,6 +419,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>D1002</g:id>
@@ -197,6 +449,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>B1002</g:id>
@@ -209,6 +479,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1004</g:id>
@@ -221,6 +509,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1005</g:id>
@@ -234,6 +540,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>F1002</g:id>
@@ -246,6 +570,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>A1005</g:id>
@@ -258,6 +600,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>A1006</g:id>
@@ -270,6 +630,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>A1007</g:id>
@@ -282,6 +660,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>G1001</g:id>
@@ -294,6 +690,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>G1003</g:id>
@@ -307,6 +721,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>C1005</g:id>
@@ -320,6 +752,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>G1004</g:id>
@@ -332,6 +782,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>B1003</g:id>
@@ -344,6 +812,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>A1008</g:id>
@@ -356,6 +842,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1007</g:id>
@@ -369,6 +873,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>A1009</g:id>
@@ -382,6 +904,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>A1010</g:id>
@@ -394,6 +934,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>B1004</g:id>
@@ -406,6 +964,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>C1006</g:id>
@@ -418,6 +994,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>B1005</g:id>
@@ -430,6 +1024,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1008</g:id>
@@ -443,6 +1055,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1009</g:id>
@@ -457,6 +1087,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1010</g:id>
@@ -470,6 +1118,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>H1001</g:id>
@@ -483,6 +1149,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1011</g:id>
@@ -495,6 +1179,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1012</g:id>
@@ -509,6 +1211,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>I1002</g:id>
@@ -522,6 +1242,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>I1003</g:id>
@@ -535,6 +1273,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>I1004</g:id>
@@ -548,6 +1304,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>J1001</g:id>
@@ -561,6 +1335,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>J1002</g:id>
@@ -574,6 +1366,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>J1003</g:id>
@@ -587,6 +1397,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>J1004</g:id>
@@ -600,6 +1428,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>J1005</g:id>
@@ -613,6 +1459,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1013</g:id>
@@ -627,6 +1491,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1014</g:id>
@@ -643,6 +1525,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1015</g:id>
@@ -657,6 +1557,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>H1002</g:id>
@@ -673,6 +1591,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1016</g:id>
@@ -694,6 +1630,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1017</g:id>
@@ -712,6 +1666,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>H1003</g:id>
@@ -729,6 +1701,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>H1004</g:id>
@@ -744,6 +1734,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1018</g:id>
@@ -762,6 +1770,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1019</g:id>
@@ -775,6 +1801,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1020</g:id>
@@ -793,6 +1837,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1021</g:id>
@@ -812,6 +1874,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>E1022</g:id>
@@ -828,6 +1908,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>K1001</g:id>
@@ -844,6 +1942,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L1001</g:id>
@@ -858,6 +1974,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L1002</g:id>
@@ -871,6 +2005,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L1003</g:id>
@@ -884,6 +2036,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L50182</g:id>
@@ -898,6 +2068,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L50185</g:id>
@@ -912,6 +2100,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L50162</g:id>
@@ -926,6 +2132,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L501285</g:id>
@@ -940,6 +2164,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L66467</g:id>
@@ -954,6 +2196,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L67381</g:id>
@@ -968,6 +2228,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L67312</g:id>
@@ -982,6 +2260,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L67313</g:id>
@@ -996,6 +2292,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L67382</g:id>
@@ -1010,6 +2324,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L67383</g:id>
@@ -1024,6 +2356,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L66466</g:id>
@@ -1040,6 +2390,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L67157</g:id>
@@ -1056,6 +2424,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L67158</g:id>
@@ -1072,6 +2458,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L67159</g:id>
@@ -1088,6 +2492,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L67160</g:id>
@@ -1104,6 +2526,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L50128</g:id>
@@ -1120,6 +2560,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L40618</g:id>
@@ -1134,6 +2592,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L40623</g:id>
@@ -1148,6 +2624,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L40617</g:id>
@@ -1162,6 +2656,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L40622</g:id>
@@ -1176,6 +2688,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L40616</g:id>
@@ -1190,6 +2720,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L42418</g:id>
@@ -1204,6 +2752,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L53698</g:id>
@@ -1218,6 +2784,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L46399</g:id>
@@ -1232,6 +2816,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L35951</g:id>
@@ -1246,6 +2848,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L46586</g:id>
@@ -1260,6 +2880,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L42800</g:id>
@@ -1274,6 +2912,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L35945</g:id>
@@ -1289,6 +2945,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L80859</g:id>
@@ -1303,6 +2977,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L46823</g:id>
@@ -1317,6 +3009,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L49216</g:id>
@@ -1331,6 +3041,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L81935</g:id>
@@ -1345,6 +3073,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L81990</g:id>
@@ -1359,6 +3105,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L40462</g:id>
@@ -1373,6 +3137,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>M1001</g:id>
@@ -1386,6 +3168,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>M1002</g:id>
@@ -1399,6 +3199,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>M1003</g:id>
@@ -1414,6 +3232,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>M1004</g:id>
@@ -1429,6 +3265,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L20041</g:id>
@@ -1443,6 +3297,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L501313</g:id>
@@ -1458,6 +3330,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L24860</g:id>
@@ -1472,6 +3362,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L24148</g:id>
@@ -1486,6 +3394,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L24159</g:id>
@@ -1500,6 +3426,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L20078</g:id>
@@ -1513,6 +3457,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L24876</g:id>
@@ -1527,6 +3489,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L501319</g:id>
@@ -1541,6 +3521,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L501320</g:id>
@@ -1555,6 +3553,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L24878</g:id>
@@ -1569,6 +3585,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L24881</g:id>
@@ -1583,6 +3617,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L501323</g:id>
@@ -1597,6 +3649,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L501324</g:id>
@@ -1611,6 +3681,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L21768</g:id>
@@ -1624,6 +3712,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L21789</g:id>
@@ -1637,6 +3743,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L21796</g:id>
@@ -1650,6 +3774,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L50453</g:id>
@@ -1663,6 +3805,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L24821</g:id>
@@ -1678,6 +3838,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L24444</g:id>
@@ -1693,6 +3871,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L24666</g:id>
@@ -1706,6 +3902,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L24668</g:id>
@@ -1719,6 +3933,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L21418</g:id>
@@ -1732,6 +3964,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L24835</g:id>
@@ -1745,6 +3995,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L24254</g:id>
@@ -1758,6 +4026,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L24382</g:id>
@@ -1771,6 +4057,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 <item>
 <g:id>L24385</g:id>
@@ -1784,6 +4088,24 @@
 <g:condition>new</g:condition>
 <g:brand>MOSH GIFTS</g:brand>
 <g:identifier_exists>no</g:identifier_exists>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>Standard shipping</g:service>
+<g:price>45.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
+<g:shipping>
+<g:country>IL</g:country>
+<g:service>איסוף עצמי</g:service>
+<g:price>0.00 ILS</g:price>
+<g:min_handling_time>1</g:min_handling_time>
+<g:max_handling_time>5</g:max_handling_time>
+<g:min_transit_time>1</g:min_transit_time>
+<g:max_transit_time>5</g:max_transit_time>
+</g:shipping>
 </item>
 </channel>
 </rss>
