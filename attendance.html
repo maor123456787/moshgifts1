@@ -948,20 +948,22 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     var rows = employeeIds.map(function(id){
       var emp = employees.find(function(e){return e.id===id;});
       var weekHours = weeks.map(function(){return 0;});
+      var weekDaySets = weeks.map(function(){return {};});
       var daysWorkedSet = {};
       records.forEach(function(r){
         if(r.employeeId!==id || !r.checkOut) return;
         var ci = new Date(r.checkIn);
         if(ci < monthStart || ci > monthEnd) return;
         var idx = weeks.findIndex(function(w){ return ci>=w.start && ci<=w.end; });
-        if(idx>=0) weekHours[idx] += hoursBetween(ci, new Date(r.checkOut));
+        if(idx>=0){ weekHours[idx] += hoursBetween(ci, new Date(r.checkOut)); weekDaySets[idx][fmtDate(ci)] = true; }
         daysWorkedSet[fmtDate(ci)] = true;
       });
       var total = weekHours.reduce(function(a,b){return a+b;},0);
       var weekGaps = weekHours.map(function(h,i){ return h - weekStandards[i].hours; });
+      var weekActualDays = weekDaySets.map(function(s){ return Object.keys(s).length; });
       return {
         employeeId:id, employeeName: emp ? emp.name : '(עובד/ת נמחק/ה)',
-        weekHours:weekHours, weekGaps:weekGaps, total:total,
+        weekHours:weekHours, weekGaps:weekGaps, weekActualDays:weekActualDays, total:total,
         actualDays: Object.keys(daysWorkedSet).length
       };
     });
@@ -1000,7 +1002,10 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     }
     var m = buildMonthlyMatrix(year, monthIndex, empIds);
     var thead = '<thead><tr><th>עובד/ת</th>' +
-      m.weeks.map(function(w,i){ return '<th class="num">שבוע '+(i+1)+'<br><span style="font-weight:400;">'+fmtDate(w.labelStart)+'–'+fmtDate(w.labelEnd)+'<br>תקן: '+fmtHours(m.weekStandards[i].hours)+'</span></th>'; }).join('') +
+      m.weeks.map(function(w,i){
+        var s = m.weekStandards[i];
+        return '<th class="num">שבוע '+(i+1)+'<br><span style="font-weight:400;">'+fmtDate(w.labelStart)+'–'+fmtDate(w.labelEnd)+'<br>תקן: '+s.days+' ימים · '+fmtHours(s.hours)+' שעות</span></th>';
+      }).join('') +
       '<th class="num">בפועל</th><th class="num">ימי עבודה</th><th class="num">ימי תקן</th><th class="num">שעות תקן</th><th class="num">פער</th><th class="num">% עמידה</th><th>סטטוס</th></tr></thead>';
     var tbody = '<tbody>' + m.rows.map(function(r){
       var gapClass = r.gap >= 0 ? 'stat-good' : 'stat-bad';
@@ -1009,7 +1014,8 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
       return '<tr><td>'+escapeHtml(r.employeeName)+'</td>' +
         r.weekHours.map(function(h,i){
           var wCls = h<=0 ? '' : (r.weekGaps[i] >= 0 ? 'stat-good' : 'stat-bad');
-          return '<td class="num '+wCls+'">'+(h>0?fmtHours(h):'—')+'</td>';
+          var daysLabel = '<br><span style="font-weight:400; font-size:10.5px;">'+r.weekActualDays[i]+'/'+m.weekStandards[i].days+' ימים</span>';
+          return '<td class="num '+wCls+'">'+(h>0?fmtHours(h):'—')+(m.weekStandards[i].days>0?daysLabel:'')+'</td>';
         }).join('') +
         '<td class="num">'+fmtHours(r.total)+'</td>' +
         '<td class="num">'+r.actualDays+'</td>' +
@@ -1110,7 +1116,8 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
 
     /* summary sheet */
     var header = ['עובד/ת'].concat(matrix.weeks.map(function(w,i){
-      return 'שבוע '+(i+1)+' ('+fmtDate(w.labelStart)+'-'+fmtDate(w.labelEnd)+')';
+      var s = matrix.weekStandards[i];
+      return 'שבוע '+(i+1)+' ('+fmtDate(w.labelStart)+'-'+fmtDate(w.labelEnd)+') - תקן '+s.days+' ימים/'+s.hours+'ש';
     })).concat(['בפועל','ימי עבודה','ימי תקן','שעות תקן','פער','% עמידה','סטטוס']);
     var TITLE_ROWS = 3; // title, generated-at, blank
     var rows2 = [
