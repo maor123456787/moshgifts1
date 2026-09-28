@@ -1004,7 +1004,8 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     var thead = '<thead><tr><th>עובד/ת</th>' +
       m.weeks.map(function(w,i){
         var s = m.weekStandards[i];
-        return '<th class="num">שבוע '+(i+1)+'<br><span style="font-weight:400;">'+fmtDate(w.labelStart)+'–'+fmtDate(w.labelEnd)+'<br>תקן: '+s.days+' ימים · '+fmtHours(s.hours)+' שעות</span></th>';
+        var holText = s.holidays.length ? ('<br><span style="font-weight:600; color:var(--accent);">חג: '+s.holidays.map(function(h){return escapeHtml(h.name)+' ('+fmtDate(h.date)+')';}).join(', ')+'</span>') : '';
+        return '<th class="num">שבוע '+(i+1)+'<br><span style="font-weight:400;">'+fmtDate(w.labelStart)+'–'+fmtDate(w.labelEnd)+'<br>תקן: '+s.days+' ימים · '+fmtHours(s.hours)+' שעות'+holText+'</span></th>';
       }).join('') +
       '<th class="num">בפועל</th><th class="num">ימי עבודה</th><th class="num">ימי תקן</th><th class="num">שעות תקן</th><th class="num">פער</th><th class="num">% עמידה</th><th>סטטוס</th></tr></thead>';
     var tbody = '<tbody>' + m.rows.map(function(r){
@@ -1117,7 +1118,8 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     /* summary sheet */
     var header = ['עובד/ת'].concat(matrix.weeks.map(function(w,i){
       var s = matrix.weekStandards[i];
-      return 'שבוע '+(i+1)+' ('+fmtDate(w.labelStart)+'-'+fmtDate(w.labelEnd)+') - תקן '+s.days+' ימים/'+s.hours+'ש';
+      var holSuffix = s.holidays.length ? (' - חג: '+s.holidays.map(function(h){return h.name+' ('+fmtDate(h.date)+')';}).join(', ')) : '';
+      return 'שבוע '+(i+1)+' ('+fmtDate(w.labelStart)+'-'+fmtDate(w.labelEnd)+') - תקן '+s.days+' ימים/'+s.hours+'ש'+holSuffix;
     })).concat(['בפועל','ימי עבודה','ימי תקן','שעות תקן','פער','% עמידה','סטטוס']);
     var TITLE_ROWS = 3; // title, generated-at, blank
     var rows2 = [
@@ -1169,12 +1171,24 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     ws2['!cols'] = autoCols(header, [22]);
     styleHeaderRow2(ws2, header.length, TITLE_ROWS);
     var afterTableRow = totalsRow+2;
-    if(matrix.standard.holidays.length){
-      var holText = 'חגים שלא נכללו בתקן החודש: ' + matrix.standard.holidays.map(function(h){ return h.name+' ('+fmtDate(h.date)+')'; }).join(', ');
-      XLSX.utils.sheet_add_aoa(ws2, [[holText]], { origin: 'A'+afterTableRow });
-      afterTableRow++;
-    }
     XLSX.utils.sheet_add_aoa(ws2, [['תקן: 7 שעות ליום עבודה, א׳-ה׳ בלבד (לא כולל שישי-שבת וחגים)']], { origin: 'A'+afterTableRow });
+    afterTableRow++;
+    var weeksWithHolidays = matrix.weeks.filter(function(w,i){ return matrix.weekStandards[i].holidays.length; });
+    if(weeksWithHolidays.length){
+      XLSX.utils.sheet_add_aoa(ws2, [['הערות - שבועות עם חגים (הפחיתו את ימי התקן באותו שבוע):']], { origin: 'A'+afterTableRow });
+      ws2['A'+afterTableRow].s = { font:{ bold:true } };
+      afterTableRow++;
+      matrix.weeks.forEach(function(w,i){
+        var s = matrix.weekStandards[i];
+        if(!s.holidays.length) return;
+        var wouldHaveBeenDays = s.days + s.holidays.length; // ימי א'-ה' באותו טווח לולא החג
+        var note = 'שבוע '+(i+1)+' ('+fmtDate(w.labelStart)+'-'+fmtDate(w.labelEnd)+'): ' +
+          s.holidays.map(function(h){ return h.name+' ('+fmtDate(h.date)+')'; }).join(', ') +
+          ' — לכן '+s.days+' ימי עבודה ('+s.hours+' שעות) במקום '+wouldHaveBeenDays+' ימים';
+        XLSX.utils.sheet_add_aoa(ws2, [[note]], { origin: 'A'+afterTableRow });
+        afterTableRow++;
+      });
+    }
     XLSX.utils.book_append_sheet(wb, ws2, usedSheetName('סיכום חודשי'));
 
     /* one history sheet per employee, organized and colored against the daily 7h standard */
