@@ -901,19 +901,22 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
   function holidayName(d){
     return JEWISH_HOLIDAYS[d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())] || null;
   }
-  function computeStandard(year, monthIndex){
-    var start = new Date(year, monthIndex, 1);
-    var end = new Date(year, monthIndex+1, 0);
+  function standardForRange(rangeStart, rangeEnd){
     var days = 0;
-    var holidaysInMonth = [];
-    for(var d = new Date(start); d <= end; d.setDate(d.getDate()+1)){
+    var holidaysInRange = [];
+    for(var d = new Date(rangeStart.getFullYear(),rangeStart.getMonth(),rangeStart.getDate()); d <= rangeEnd; d.setDate(d.getDate()+1)){
       var dow = d.getDay();
       if(dow===5 || dow===6) continue;
       var hol = holidayName(d);
-      if(hol){ holidaysInMonth.push({ date:new Date(d), name:hol }); continue; }
+      if(hol){ holidaysInRange.push({ date:new Date(d), name:hol }); continue; }
       days++;
     }
-    return { days:days, hours:days*STANDARD_HOURS_PER_DAY, holidays:holidaysInMonth };
+    return { days:days, hours:days*STANDARD_HOURS_PER_DAY, holidays:holidaysInRange };
+  }
+  function computeStandard(year, monthIndex){
+    var start = new Date(year, monthIndex, 1);
+    var end = new Date(year, monthIndex+1, 0);
+    return standardForRange(start, end);
   }
 
   /* ---------------- monthly / weekly matrix ---------------- */
@@ -937,18 +940,26 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
       weeks.push({ start:new Date(cursor), end:weekEndFull, labelStart:labelStart, labelEnd:labelEnd });
       cursor = new Date(cursor); cursor.setDate(cursor.getDate()+7);
     }
+    var weekStandards = weeks.map(function(w){ return standardForRange(w.labelStart, w.labelEnd); });
     var rows = employeeIds.map(function(id){
       var emp = employees.find(function(e){return e.id===id;});
       var weekHours = weeks.map(function(){return 0;});
+      var daysWorkedSet = {};
       records.forEach(function(r){
         if(r.employeeId!==id || !r.checkOut) return;
         var ci = new Date(r.checkIn);
         if(ci < monthStart || ci > monthEnd) return;
         var idx = weeks.findIndex(function(w){ return ci>=w.start && ci<=w.end; });
         if(idx>=0) weekHours[idx] += hoursBetween(ci, new Date(r.checkOut));
+        daysWorkedSet[fmtDate(ci)] = true;
       });
       var total = weekHours.reduce(function(a,b){return a+b;},0);
-      return { employeeId:id, employeeName: emp ? emp.name : '(עובד/ת נמחק/ה)', weekHours:weekHours, total:total };
+      var weekGaps = weekHours.map(function(h,i){ return h - weekStandards[i].hours; });
+      return {
+        employeeId:id, employeeName: emp ? emp.name : '(עובד/ת נמחק/ה)',
+        weekHours:weekHours, weekGaps:weekGaps, total:total,
+        actualDays: Object.keys(daysWorkedSet).length
+      };
     });
     var weekTotals = weeks.map(function(_,i){ return rows.reduce(function(s,r){return s+r.weekHours[i];},0); });
     var grandTotal = rows.reduce(function(s,r){return s+r.total;},0);
@@ -957,8 +968,9 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
       r.standardDays = standard.days;
       r.standardHours = standard.hours;
       r.gap = r.total - standard.hours;
+      r.pctOfStandard = standard.hours>0 ? (r.total/standard.hours*100) : 0;
     });
-    return { weeks:weeks, rows:rows, weekTotals:weekTotals, grandTotal:grandTotal, monthStart:monthStart, monthEnd:monthEnd, standard:standard };
+    return { weeks:weeks, weekStandards:weekStandards, rows:rows, weekTotals:weekTotals, grandTotal:grandTotal, monthStart:monthStart, monthEnd:monthEnd, standard:standard };
   }
 
   function currentMonthValue(){
@@ -984,21 +996,28 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     }
     var m = buildMonthlyMatrix(year, monthIndex, empIds);
     var thead = '<thead><tr><th>עובד/ת</th>' +
-      m.weeks.map(function(w,i){ return '<th class="num">שבוע '+(i+1)+'<br><span style="font-weight:400;">'+fmtDate(w.labelStart)+'–'+fmtDate(w.labelEnd)+'</span></th>'; }).join('') +
-      '<th class="num">בפועל</th><th class="num">ימי תקן</th><th class="num">שעות תקן</th><th class="num">פער</th></tr></thead>';
+      m.weeks.map(function(w,i){ return '<th class="num">שבוע '+(i+1)+'<br><span style="font-weight:400;">'+fmtDate(w.labelStart)+'–'+fmtDate(w.labelEnd)+'<br>תקן: '+fmtHours(m.weekStandards[i].hours)+'</span></th>'; }).join('') +
+      '<th class="num">בפועל</th><th class="num">ימי עבודה</th><th class="num">ימי תקן</th><th class="num">שעות תקן</th><th class="num">פער</th><th class="num">% עמידה</th><th>סטטוס</th></tr></thead>';
     var tbody = '<tbody>' + m.rows.map(function(r){
       var gapClass = r.gap >= 0 ? 'stat-good' : 'stat-bad';
       var gapText = (r.gap>=0?'+':'') + fmtHours(r.gap);
+      var statusText = r.gap >= 0 ? 'עמד/ה בתקן' : 'מתחת לתקן';
       return '<tr><td>'+escapeHtml(r.employeeName)+'</td>' +
-        r.weekHours.map(function(h){ return '<td class="num">'+(h>0?fmtHours(h):'—')+'</td>'; }).join('') +
+        r.weekHours.map(function(h,i){
+          var wCls = h<=0 ? '' : (r.weekGaps[i] >= 0 ? 'stat-good' : 'stat-bad');
+          return '<td class="num '+wCls+'">'+(h>0?fmtHours(h):'—')+'</td>';
+        }).join('') +
         '<td class="num">'+fmtHours(r.total)+'</td>' +
+        '<td class="num">'+r.actualDays+'</td>' +
         '<td class="num">'+r.standardDays+'</td>' +
         '<td class="num">'+fmtHours(r.standardHours)+'</td>' +
-        '<td class="num '+gapClass+'">'+gapText+'</td></tr>';
+        '<td class="num '+gapClass+'">'+gapText+'</td>' +
+        '<td class="num '+gapClass+'">'+Math.round(r.pctOfStandard)+'%</td>' +
+        '<td class="'+gapClass+'">'+statusText+'</td></tr>';
     }).join('') + '</tbody>';
     var tfoot = '<tfoot><tr><td>סה״כ</td>' +
       m.weekTotals.map(function(h){ return '<td class="num">'+fmtHours(h)+'</td>'; }).join('') +
-      '<td class="num">'+fmtHours(m.grandTotal)+'</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr></tfoot>';
+      '<td class="num">'+fmtHours(m.grandTotal)+'</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>—</td></tr></tfoot>';
     table.innerHTML = thead + tbody + tfoot;
 
     var noteEl = document.getElementById('reportNote');
@@ -1054,9 +1073,10 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     var matrix = buildMonthlyMatrix(year, monthIndex, empIds);
 
     var HEADER_STYLE = { fill:{ patternType:'solid', fgColor:{ rgb:'B4501E' } }, font:{ bold:true, color:{ rgb:'FFFFFF' } }, alignment:{ horizontal:'center', vertical:'center' } };
-    function styleHeaderRow(ws, cols){
+    function styleHeaderRow(ws, cols){ styleHeaderRow2(ws, cols, 0); }
+    function styleHeaderRow2(ws, cols, rowIdx){
       for(var c=0;c<cols;c++){
-        var addr = XLSX.utils.encode_cell({r:0,c:c});
+        var addr = XLSX.utils.encode_cell({r:rowIdx,c:c});
         if(ws[addr]) ws[addr].s = HEADER_STYLE;
       }
     }
@@ -1064,93 +1084,140 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     var wb = XLSX.utils.book_new();
     wb.Workbook = { Views: [{ RTL: true }] };
 
+    var GOOD_STYLE = { fill:{ patternType:'solid', fgColor:{ rgb:'DCF5E4' } }, font:{ bold:true, color:{ rgb:'1F8A4C' } } };
+    var BAD_STYLE = { fill:{ patternType:'solid', fgColor:{ rgb:'FBE6E3' } }, font:{ bold:true, color:{ rgb:'C23B32' } } };
+    var TITLE_STYLE = { font:{ bold:true, sz:13 } };
+    function autoCols(headers, mins){
+      return headers.map(function(h,i){
+        var w = Math.max(11, String(h).length + 4);
+        if(mins && mins[i]) w = Math.max(w, mins[i]);
+        return {wch:w};
+      });
+    }
+    function safeSheetName(name){
+      return name.replace(/[\\\/\?\*\[\]:]/g,' ').slice(0,31);
+    }
+    function usedSheetName(base){
+      var name = safeSheetName(base), n = 2;
+      while(wb.SheetNames.indexOf(name) !== -1){ name = safeSheetName(base+' '+n); n++; }
+      return name;
+    }
+    var generatedAt = fmtDateTimeFull(new Date());
+
     /* summary sheet */
     var header = ['עובד/ת'].concat(matrix.weeks.map(function(w,i){
       return 'שבוע '+(i+1)+' ('+fmtDate(w.labelStart)+'-'+fmtDate(w.labelEnd)+')';
-    })).concat(['בפועל','ימי תקן','שעות תקן','פער']);
-    var rows2 = [header];
+    })).concat(['בפועל','ימי עבודה','ימי תקן','שעות תקן','פער','% עמידה','סטטוס']);
+    var TITLE_ROWS = 3; // title, generated-at, blank
+    var rows2 = [
+      ['דוח נוכחות - סיכום חודשי — ' + HE_MONTHS[monthIndex] + ' ' + year],
+      ['הופק בתאריך: ' + generatedAt],
+      [],
+      header
+    ];
     matrix.rows.forEach(function(r){
       rows2.push([r.employeeName].concat(r.weekHours.map(function(h){ return Number(h.toFixed(2)); }))
-        .concat([null, r.standardDays, r.standardHours, null]));
+        .concat([null, r.actualDays, r.standardDays, r.standardHours, null, null, r.gap>=0 ? 'עמד/ה בתקן' : 'מתחת לתקן']));
     });
-    rows2.push(['סה"כ'].concat(matrix.weekTotals.map(function(h){ return Number(h.toFixed(2)); })).concat([null, null, null, null]));
+    var totalsRowIdx = rows2.length;
+    rows2.push(['סה"כ'].concat(matrix.weekTotals.map(function(h){ return Number(h.toFixed(2)); })).concat([null, null, null, null, null, null, null]));
     var ws2 = XLSX.utils.aoa_to_sheet(rows2);
+    ws2['A1'].s = TITLE_STYLE;
     var numWeeks = matrix.weeks.length;
     var actualCol = XLSX.utils.encode_col(numWeeks+1);
-    var stdDaysCol = XLSX.utils.encode_col(numWeeks+2);
-    var stdHoursCol = XLSX.utils.encode_col(numWeeks+3);
-    var gapCol = XLSX.utils.encode_col(numWeeks+4);
+    var actualDaysCol = XLSX.utils.encode_col(numWeeks+2);
+    var stdDaysCol = XLSX.utils.encode_col(numWeeks+3);
+    var stdHoursCol = XLSX.utils.encode_col(numWeeks+4);
+    var gapCol = XLSX.utils.encode_col(numWeeks+5);
+    var pctCol = XLSX.utils.encode_col(numWeeks+6);
+    var statusCol = XLSX.utils.encode_col(numWeeks+7);
     var startCol = XLSX.utils.encode_col(1);
     var endCol = XLSX.utils.encode_col(numWeeks);
-    var GOOD_STYLE = { fill:{ patternType:'solid', fgColor:{ rgb:'DCF5E4' } }, font:{ bold:true, color:{ rgb:'1F8A4C' } } };
-    var BAD_STYLE = { fill:{ patternType:'solid', fgColor:{ rgb:'FBE6E3' } }, font:{ bold:true, color:{ rgb:'C23B32' } } };
-    for(var i=1;i<=matrix.rows.length;i++){
-      var rn = i+1;
-      var rowData = matrix.rows[i-1];
+    for(var i=0;i<matrix.rows.length;i++){
+      var rn = TITLE_ROWS+2+i; // 1-indexed excel row of this employee
+      var rowData = matrix.rows[i];
+      var rowStyle = rowData.gap>=0 ? GOOD_STYLE : BAD_STYLE;
       ws2[actualCol+rn] = { t:'n', f:'SUM('+startCol+rn+':'+endCol+rn+')', z:'0.00' };
-      ws2[gapCol+rn] = { t:'n', f:actualCol+rn+'-'+stdHoursCol+rn, z:'+0.00;-0.00', s: rowData.gap>=0 ? GOOD_STYLE : BAD_STYLE };
-    }
-    var totalsRow = matrix.rows.length+2;
-    for(var c=1;c<=numWeeks;c++){
-      var cl = XLSX.utils.encode_col(c);
-      ws2[cl+totalsRow] = { t:'n', f:'SUM('+cl+'2:'+cl+(matrix.rows.length+1)+')', z:'0.00' };
-    }
-    ws2[actualCol+totalsRow] = { t:'n', f:'SUM('+actualCol+'2:'+actualCol+(matrix.rows.length+1)+')', z:'0.00' };
-    ws2['!cols'] = [{wch:22}].concat(matrix.weeks.map(function(){return {wch:16};})).concat([{wch:10},{wch:10},{wch:11},{wch:9}]);
-    styleHeaderRow(ws2, header.length);
-    if(matrix.standard.holidays.length){
-      var holRow = matrix.rows.length+3;
-      var holText = 'חגים שלא נכללו בתקן: ' + matrix.standard.holidays.map(function(h){ return h.name+' ('+fmtDate(h.date)+')'; }).join(', ');
-      XLSX.utils.sheet_add_aoa(ws2, [[holText]], { origin: 'A'+holRow });
-    }
-    XLSX.utils.book_append_sheet(wb, ws2, 'סיכום חודשי');
-
-    /* raw history sheet: תאריך, יום, כניסה, יציאה, שעות עבודה (+ עובד/ת כשבחרו "כל העובדים") */
-    var sorted = records.filter(function(r){ return empIds.indexOf(r.employeeId) !== -1; })
-      .slice().sort(function(a,b){ return new Date(a.checkIn) - new Date(b.checkIn); });
-    var includeEmpCol = empSel === 'all';
-    var histHeader = (includeEmpCol ? ['עובד/ת'] : []).concat(['תאריך','יום','כניסה','יציאה','שעות עבודה']);
-    var histRows = [histHeader];
-    sorted.forEach(function(r){
-      var emp = employees.find(function(e){return e.id===r.employeeId;});
-      var ci = new Date(r.checkIn);
-      histRows.push((includeEmpCol ? [emp ? emp.name : '(עובד/ת נמחק/ה)'] : []).concat([
-        ci, HE_DAYS[ci.getDay()], ci, r.checkOut ? new Date(r.checkOut) : 'בעבודה כרגע', null
-      ]));
-    });
-    var ws1 = XLSX.utils.aoa_to_sheet(histRows);
-    var off = includeEmpCol ? 1 : 0;
-    var COL_DATE = XLSX.utils.encode_col(off);
-    var COL_IN = XLSX.utils.encode_col(off+2);
-    var COL_OUT = XLSX.utils.encode_col(off+3);
-    var COL_HRS = XLSX.utils.encode_col(off+4);
-    for(var j=1;j<histRows.length;j++){
-      var row = j+1;
-      var rec = sorted[j-1];
-      if(ws1[COL_DATE+row]) ws1[COL_DATE+row].z = 'dd/mm/yyyy';
-      if(ws1[COL_IN+row]) ws1[COL_IN+row].z = 'dd/mm/yyyy hh:mm';
-      if(rec.checkOut){
-        ws1[COL_OUT+row].z = 'dd/mm/yyyy hh:mm';
-        ws1[COL_HRS+row] = { t:'n', f:'('+COL_OUT+row+'-'+COL_IN+row+')*24', z:'0.00' };
-      } else {
-        ws1[COL_HRS+row] = { t:'s', v:'בעבודה' };
+      ws2[gapCol+rn] = { t:'n', f:actualCol+rn+'-'+stdHoursCol+rn, z:'+0.00;-0.00', s: rowStyle };
+      ws2[pctCol+rn] = { t:'n', f:'ROUND('+actualCol+rn+'/'+stdHoursCol+rn+'*100,0)', z:'0"%"', s: rowStyle };
+      ws2[statusCol+rn].s = rowStyle;
+      for(var wk=0; wk<numWeeks; wk++){
+        var wCol = XLSX.utils.encode_col(1+wk);
+        var addr = wCol+rn;
+        if(ws2[addr] && rowData.weekHours[wk] > 0){
+          ws2[addr].s = rowData.weekGaps[wk] >= 0 ? GOOD_STYLE : BAD_STYLE;
+        }
       }
     }
-    ws1['!cols'] = (includeEmpCol ? [{wch:20}] : []).concat([{wch:12},{wch:10},{wch:18},{wch:18},{wch:12}]);
-    styleHeaderRow(ws1, histHeader.length);
-    XLSX.utils.book_append_sheet(wb, ws1, 'היסטוריה');
+    var totalsRow = totalsRowIdx+1;
+    for(var c=1;c<=numWeeks;c++){
+      var cl = XLSX.utils.encode_col(c);
+      ws2[cl+totalsRow] = { t:'n', f:'SUM('+cl+(TITLE_ROWS+2)+':'+cl+(TITLE_ROWS+1+matrix.rows.length)+')', z:'0.00' };
+    }
+    ws2[actualCol+totalsRow] = { t:'n', f:'SUM('+actualCol+(TITLE_ROWS+2)+':'+actualCol+(TITLE_ROWS+1+matrix.rows.length)+')', z:'0.00' };
+    ws2['!cols'] = autoCols(header, [22]);
+    styleHeaderRow2(ws2, header.length, TITLE_ROWS);
+    var afterTableRow = totalsRow+2;
+    if(matrix.standard.holidays.length){
+      var holText = 'חגים שלא נכללו בתקן החודש: ' + matrix.standard.holidays.map(function(h){ return h.name+' ('+fmtDate(h.date)+')'; }).join(', ');
+      XLSX.utils.sheet_add_aoa(ws2, [[holText]], { origin: 'A'+afterTableRow });
+      afterTableRow++;
+    }
+    XLSX.utils.sheet_add_aoa(ws2, [['תקן: 7 שעות ליום עבודה, א׳-ה׳ בלבד (לא כולל שישי-שבת וחגים)']], { origin: 'A'+afterTableRow });
+    XLSX.utils.book_append_sheet(wb, ws2, usedSheetName('סיכום חודשי'));
+
+    /* one history sheet per employee, organized and colored against the daily 7h standard */
+    empIds.forEach(function(empId){
+      var emp = employees.find(function(e){return e.id===empId;});
+      var empName = emp ? emp.name : '(עובד/ת נמחק/ה)';
+      var sorted = records.filter(function(r){ return r.employeeId===empId; })
+        .slice().sort(function(a,b){ return new Date(a.checkIn) - new Date(b.checkIn); });
+      var histHeader = ['תאריך','יום','כניסה','יציאה','שעות בפועל','תקן יומי','פער יומי'];
+      var hRows = [
+        ['היסטוריית נוכחות — ' + empName],
+        ['הופק בתאריך: ' + generatedAt],
+        [],
+        histHeader
+      ];
+      sorted.forEach(function(r){
+        var ci = new Date(r.checkIn);
+        hRows.push([ci, HE_DAYS[ci.getDay()], ci, r.checkOut ? new Date(r.checkOut) : 'בעבודה כרגע', null, STANDARD_HOURS_PER_DAY, null]);
+      });
+      var wsH = XLSX.utils.aoa_to_sheet(hRows);
+      wsH['A1'].s = TITLE_STYLE;
+      var COL_DATE='A', COL_IN='C', COL_OUT='D', COL_HRS='E', COL_STD='F', COL_GAP='G';
+      for(var j=0;j<sorted.length;j++){
+        var row = 5+j;
+        var rec = sorted[j];
+        if(wsH[COL_DATE+row]) wsH[COL_DATE+row].z = 'dd/mm/yyyy';
+        if(wsH[COL_IN+row]) wsH[COL_IN+row].z = 'dd/mm/yyyy hh:mm';
+        if(rec.checkOut){
+          wsH[COL_OUT+row].z = 'dd/mm/yyyy hh:mm';
+          wsH[COL_HRS+row] = { t:'n', f:'('+COL_OUT+row+'-'+COL_IN+row+')*24', z:'0.00' };
+          wsH[COL_GAP+row] = { t:'n', f:COL_HRS+row+'-'+COL_STD+row, z:'+0.00;-0.00' };
+          var dayHours = hoursBetween(new Date(rec.checkIn), new Date(rec.checkOut));
+          wsH[COL_GAP+row].s = dayHours >= STANDARD_HOURS_PER_DAY ? GOOD_STYLE : BAD_STYLE;
+        } else {
+          wsH[COL_HRS+row] = { t:'s', v:'בעבודה' };
+        }
+      }
+      wsH['!cols'] = autoCols(histHeader, [12,10,18,18,12,10,11]);
+      styleHeaderRow2(wsH, histHeader.length, 3);
+      XLSX.utils.book_append_sheet(wb, wsH, usedSheetName('היסטוריה - '+empName));
+    });
 
     /* change log sheet, מסונן לפי אותו/ה עובד/ת שנבחר/ה */
     var logSorted = changeLog.filter(function(e){ return empSel==='all' || e.employeeId===empSel; })
       .slice().sort(function(a,b){ return new Date(a.ts) - new Date(b.ts); });
-    var logRows = [['מתי בוצע השינוי','עובד/ת','סוג שינוי','לפני','אחרי']];
+    var logHeader = ['מתי בוצע השינוי','עובד/ת','סוג שינוי','לפני','אחרי'];
+    var logRows = [logHeader];
     logSorted.forEach(function(e){
       logRows.push([fmtDateTimeFull(new Date(e.ts)), e.employeeName, ACTION_LABELS[e.action]||e.action, e.oldVal, e.newVal]);
     });
     var ws3 = XLSX.utils.aoa_to_sheet(logRows);
-    ws3['!cols'] = [{wch:18},{wch:22},{wch:18},{wch:32},{wch:20}];
-    styleHeaderRow(ws3, logRows[0].length);
-    XLSX.utils.book_append_sheet(wb, ws3, 'יומן שינויים');
+    ws3['!cols'] = autoCols(logHeader, [18,18,18,32,26]);
+    styleHeaderRow(ws3, logHeader.length);
+    XLSX.utils.book_append_sheet(wb, ws3, usedSheetName('יומן שינויים'));
 
     var wbout = XLSX.write(wb, {bookType:'xlsx', type:'array', cellStyles:true});
     var blob = new Blob([wbout], {type:'application/octet-stream'});
