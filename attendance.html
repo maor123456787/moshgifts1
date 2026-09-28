@@ -211,6 +211,7 @@
   .report-controls .spacer{flex:1;}
   tfoot td{font-weight:700; background:var(--surface-2); border-top:2px solid var(--border);}
 
+  .admin-head{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px;}
   .report-legend{display:flex; flex-wrap:wrap; align-items:center; gap:14px; font-size:12px; color:var(--ink-dim);}
   .legend-item{display:flex; align-items:center; gap:6px;}
   .legend-dot{width:10px; height:10px; border-radius:50%; display:inline-block;}
@@ -314,17 +315,20 @@
         </section>
 
         <div style="text-align:center;">
-          <button type="button" class="btn btn-ghost" id="toggleReportBtn">📊 דוח חודשי, ייצוא ויומן שינויים (למנהלת)</button>
+          <button type="button" class="btn btn-ghost" id="toggleReportBtn">🔐 כניסה למצב מנהל</button>
         </div>
 
         <section class="panel" id="reportPanel" hidden>
-          <h2>דוח חודשי, ייצוא ויומן שינויים</h2>
+          <div class="admin-head">
+            <h2>מצב מנהל - כל הנתונים, דוח, ייצוא ויומן שינויים</h2>
+            <button type="button" class="btn btn-ghost" id="exitAdminBtn" hidden>🔓 יציאה ממצב מנהל</button>
+          </div>
           <div id="reportLock" class="lock-screen">
             <div class="lock-icon">🔒</div>
-            <p>האזור הזה נעול. הזינו סיסמה כדי לצפות בדוח, לייצא לאקסל ולראות את יומן השינויים.</p>
+            <p>האזור הזה נעול. הזינו סיסמה כדי להיכנס למצב מנהל ולראות את כל הנתונים, הדוח, הייצוא ויומן השינויים.</p>
             <div class="lock-form">
               <input type="password" id="reportPasswordInput" placeholder="סיסמה" inputmode="numeric" autocomplete="off">
-              <button type="button" class="btn btn-accent" id="reportUnlockBtn">פתיחה</button>
+              <button type="button" class="btn btn-accent" id="reportUnlockBtn">כניסה</button>
             </div>
           </div>
 
@@ -1443,6 +1447,8 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
   function renderReportLock(){
     document.getElementById('reportLock').hidden = reportUnlocked;
     document.getElementById('reportBodyWrap').hidden = !reportUnlocked;
+    document.getElementById('exitAdminBtn').hidden = !reportUnlocked;
+    document.getElementById('toggleReportBtn').hidden = reportUnlocked && !document.getElementById('reportPanel').hidden;
   }
   document.getElementById('toggleReportBtn').addEventListener('click', function(){
     var panel = document.getElementById('reportPanel');
@@ -1454,10 +1460,17 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     if(val === REPORT_PASSWORD){
       reportUnlocked = true;
       document.getElementById('reportPasswordInput').value = '';
+      showToast('נכנסת למצב מנהל');
       renderAll();
     } else {
       showToast('סיסמה שגויה');
     }
+  });
+  document.getElementById('exitAdminBtn').addEventListener('click', function(){
+    reportUnlocked = false;
+    document.getElementById('reportPanel').hidden = true;
+    showToast('יצאת ממצב מנהל');
+    renderAll();
   });
   document.getElementById('reportPasswordInput').addEventListener('keydown', function(ev){
     if(ev.key === 'Enter'){ document.getElementById('reportUnlockBtn').click(); }
