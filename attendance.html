@@ -211,6 +211,16 @@
   .report-controls .spacer{flex:1;}
   tfoot td{font-weight:700; background:var(--surface-2); border-top:2px solid var(--border);}
 
+  .report-legend{display:flex; flex-wrap:wrap; align-items:center; gap:14px; font-size:12px; color:var(--ink-dim);}
+  .legend-item{display:flex; align-items:center; gap:6px;}
+  .legend-dot{width:10px; height:10px; border-radius:50%; display:inline-block;}
+  .legend-dot.stat-good{background:var(--good);}
+  .legend-dot.stat-bad{background:var(--bad);}
+  .legend-note{font-size:11.5px;}
+  td.stat-good{background:var(--good-soft); color:var(--good); font-weight:700;}
+  td.stat-bad{background:var(--bad-soft); color:var(--bad); font-weight:700;}
+  #reportNote{font-size:12px; color:var(--ink-dim); margin-top:4px; line-height:1.7;}
+
   .toast{
     position:fixed; bottom:22px; left:50%; transform:translateX(-50%) translateY(0); z-index:50;
     background:var(--ink); color:var(--bg); padding:10px 18px; border-radius:10px; font-size:13.5px;
@@ -330,9 +340,15 @@
                 <div class="spacer"></div>
                 <button type="button" class="btn btn-accent" id="exportBtn">⬇ ייצוא לאקסל</button>
               </div>
-              <div class="table-scroll" style="margin-top:12px;">
+              <div class="report-legend">
+                <span class="legend-item"><span class="legend-dot stat-good"></span> עמד/ה בתקן</span>
+                <span class="legend-item"><span class="legend-dot stat-bad"></span> מתחת לתקן</span>
+                <span class="legend-item legend-note">תקן = 7 שעות ליום, א׳–ה׳ בלבד (לא כולל שישי-שבת וחגים)</span>
+              </div>
+              <div class="table-scroll" style="margin-top:8px;">
                 <table id="reportTable"></table>
               </div>
+              <div id="reportNote"></div>
             </div>
 
             <div>
@@ -869,6 +885,37 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     }
   }
 
+  /* ---------------- standard hours (7h/day, Sun-Thu, minus Jewish holidays) ---------------- */
+  var STANDARD_HOURS_PER_DAY = 7;
+  /* מבוסס על החגים שמופיעים בפועל בדוחות ההיסטוריים שהועברו; אפשר להוסיף עוד תאריכים כאן במידת הצורך */
+  var JEWISH_HOLIDAYS = {
+    '2026-04-01': 'פסח',
+    '2026-04-08': 'שביעי של פסח',
+    '2026-04-22': 'יום העצמאות',
+    '2026-05-21': 'ערב שבועות',
+    '2026-05-22': 'שבועות',
+    '2026-09-13': 'ראש השנה',
+    '2026-09-20': 'ערב יום כיפור',
+    '2026-09-21': 'יום כיפור'
+  };
+  function holidayName(d){
+    return JEWISH_HOLIDAYS[d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())] || null;
+  }
+  function computeStandard(year, monthIndex){
+    var start = new Date(year, monthIndex, 1);
+    var end = new Date(year, monthIndex+1, 0);
+    var days = 0;
+    var holidaysInMonth = [];
+    for(var d = new Date(start); d <= end; d.setDate(d.getDate()+1)){
+      var dow = d.getDay();
+      if(dow===5 || dow===6) continue;
+      var hol = holidayName(d);
+      if(hol){ holidaysInMonth.push({ date:new Date(d), name:hol }); continue; }
+      days++;
+    }
+    return { days:days, hours:days*STANDARD_HOURS_PER_DAY, holidays:holidaysInMonth };
+  }
+
   /* ---------------- monthly / weekly matrix ---------------- */
   function getWeekStart(d){
     var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
@@ -905,7 +952,13 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     });
     var weekTotals = weeks.map(function(_,i){ return rows.reduce(function(s,r){return s+r.weekHours[i];},0); });
     var grandTotal = rows.reduce(function(s,r){return s+r.total;},0);
-    return { weeks:weeks, rows:rows, weekTotals:weekTotals, grandTotal:grandTotal, monthStart:monthStart, monthEnd:monthEnd };
+    var standard = computeStandard(year, monthIndex);
+    rows.forEach(function(r){
+      r.standardDays = standard.days;
+      r.standardHours = standard.hours;
+      r.gap = r.total - standard.hours;
+    });
+    return { weeks:weeks, rows:rows, weekTotals:weekTotals, grandTotal:grandTotal, monthStart:monthStart, monthEnd:monthEnd, standard:standard };
   }
 
   function currentMonthValue(){
@@ -932,16 +985,29 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     var m = buildMonthlyMatrix(year, monthIndex, empIds);
     var thead = '<thead><tr><th>עובד/ת</th>' +
       m.weeks.map(function(w,i){ return '<th class="num">שבוע '+(i+1)+'<br><span style="font-weight:400;">'+fmtDate(w.labelStart)+'–'+fmtDate(w.labelEnd)+'</span></th>'; }).join('') +
-      '<th class="num">סה״כ</th></tr></thead>';
+      '<th class="num">בפועל</th><th class="num">ימי תקן</th><th class="num">שעות תקן</th><th class="num">פער</th></tr></thead>';
     var tbody = '<tbody>' + m.rows.map(function(r){
+      var gapClass = r.gap >= 0 ? 'stat-good' : 'stat-bad';
+      var gapText = (r.gap>=0?'+':'') + fmtHours(r.gap);
       return '<tr><td>'+escapeHtml(r.employeeName)+'</td>' +
         r.weekHours.map(function(h){ return '<td class="num">'+(h>0?fmtHours(h):'—')+'</td>'; }).join('') +
-        '<td class="num">'+fmtHours(r.total)+'</td></tr>';
+        '<td class="num">'+fmtHours(r.total)+'</td>' +
+        '<td class="num">'+r.standardDays+'</td>' +
+        '<td class="num">'+fmtHours(r.standardHours)+'</td>' +
+        '<td class="num '+gapClass+'">'+gapText+'</td></tr>';
     }).join('') + '</tbody>';
     var tfoot = '<tfoot><tr><td>סה״כ</td>' +
       m.weekTotals.map(function(h){ return '<td class="num">'+fmtHours(h)+'</td>'; }).join('') +
-      '<td class="num">'+fmtHours(m.grandTotal)+'</td></tr></tfoot>';
+      '<td class="num">'+fmtHours(m.grandTotal)+'</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr></tfoot>';
     table.innerHTML = thead + tbody + tfoot;
+
+    var noteEl = document.getElementById('reportNote');
+    if(m.standard.holidays.length){
+      noteEl.innerHTML = '🟠 חגים שלא נכללו בתקן החודש (יש לבדוק ידנית שעות ליום כזה במידת הצורך): ' +
+        m.standard.holidays.map(function(h){ return escapeHtml(h.name)+' ('+fmtDate(h.date)+')'; }).join(', ');
+    } else {
+      noteEl.innerHTML = '';
+    }
   }
 
   document.getElementById('reportMonth').addEventListener('change', renderReport);
@@ -1001,29 +1067,42 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     /* summary sheet */
     var header = ['עובד/ת'].concat(matrix.weeks.map(function(w,i){
       return 'שבוע '+(i+1)+' ('+fmtDate(w.labelStart)+'-'+fmtDate(w.labelEnd)+')';
-    })).concat(['סה"כ שעות']);
+    })).concat(['בפועל','ימי תקן','שעות תקן','פער']);
     var rows2 = [header];
     matrix.rows.forEach(function(r){
-      rows2.push([r.employeeName].concat(r.weekHours.map(function(h){ return Number(h.toFixed(2)); })).concat([null]));
+      rows2.push([r.employeeName].concat(r.weekHours.map(function(h){ return Number(h.toFixed(2)); }))
+        .concat([null, r.standardDays, r.standardHours, null]));
     });
-    rows2.push(['סה"כ'].concat(matrix.weekTotals.map(function(h){ return Number(h.toFixed(2)); })).concat([null]));
+    rows2.push(['סה"כ'].concat(matrix.weekTotals.map(function(h){ return Number(h.toFixed(2)); })).concat([null, null, null, null]));
     var ws2 = XLSX.utils.aoa_to_sheet(rows2);
     var numWeeks = matrix.weeks.length;
-    var lastCol = XLSX.utils.encode_col(numWeeks+1);
+    var actualCol = XLSX.utils.encode_col(numWeeks+1);
+    var stdDaysCol = XLSX.utils.encode_col(numWeeks+2);
+    var stdHoursCol = XLSX.utils.encode_col(numWeeks+3);
+    var gapCol = XLSX.utils.encode_col(numWeeks+4);
     var startCol = XLSX.utils.encode_col(1);
     var endCol = XLSX.utils.encode_col(numWeeks);
+    var GOOD_STYLE = { fill:{ patternType:'solid', fgColor:{ rgb:'DCF5E4' } }, font:{ bold:true, color:{ rgb:'1F8A4C' } } };
+    var BAD_STYLE = { fill:{ patternType:'solid', fgColor:{ rgb:'FBE6E3' } }, font:{ bold:true, color:{ rgb:'C23B32' } } };
     for(var i=1;i<=matrix.rows.length;i++){
       var rn = i+1;
-      ws2[lastCol+rn] = { t:'n', f:'SUM('+startCol+rn+':'+endCol+rn+')', z:'0.00' };
+      var rowData = matrix.rows[i-1];
+      ws2[actualCol+rn] = { t:'n', f:'SUM('+startCol+rn+':'+endCol+rn+')', z:'0.00' };
+      ws2[gapCol+rn] = { t:'n', f:actualCol+rn+'-'+stdHoursCol+rn, z:'+0.00;-0.00', s: rowData.gap>=0 ? GOOD_STYLE : BAD_STYLE };
     }
     var totalsRow = matrix.rows.length+2;
     for(var c=1;c<=numWeeks;c++){
       var cl = XLSX.utils.encode_col(c);
       ws2[cl+totalsRow] = { t:'n', f:'SUM('+cl+'2:'+cl+(matrix.rows.length+1)+')', z:'0.00' };
     }
-    ws2[lastCol+totalsRow] = { t:'n', f:'SUM('+lastCol+'2:'+lastCol+(matrix.rows.length+1)+')', z:'0.00' };
-    ws2['!cols'] = [{wch:22}].concat(matrix.weeks.map(function(){return {wch:16};})).concat([{wch:12}]);
+    ws2[actualCol+totalsRow] = { t:'n', f:'SUM('+actualCol+'2:'+actualCol+(matrix.rows.length+1)+')', z:'0.00' };
+    ws2['!cols'] = [{wch:22}].concat(matrix.weeks.map(function(){return {wch:16};})).concat([{wch:10},{wch:10},{wch:11},{wch:9}]);
     styleHeaderRow(ws2, header.length);
+    if(matrix.standard.holidays.length){
+      var holRow = matrix.rows.length+3;
+      var holText = 'חגים שלא נכללו בתקן: ' + matrix.standard.holidays.map(function(h){ return h.name+' ('+fmtDate(h.date)+')'; }).join(', ');
+      XLSX.utils.sheet_add_aoa(ws2, [[holText]], { origin: 'A'+holRow });
+    }
     XLSX.utils.book_append_sheet(wb, ws2, 'סיכום חודשי');
 
     /* raw history sheet: תאריך, יום, כניסה, יציאה, שעות עבודה (+ עובד/ת כשבחרו "כל העובדים") */
