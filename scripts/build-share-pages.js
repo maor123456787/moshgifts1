@@ -82,15 +82,16 @@ function writeSharePage(outDir, title, description, imageUrl, redirectUrl) {
 let productPages = 0;
 data.products.forEach((p) => {
   const sku = (p.sku || p.id).replace(/[^A-Za-z0-9_-]/g, '');
+  const slug = sku.toLowerCase();
   const imgDataUri = (p.images || [])[0];
   const imageUrl = imgDataUri
     ? siteBaseUrl + 'product-images/' + sku + '-1.' + extFromDataUri(imgDataUri)
     : siteBaseUrl + 'og-image.png';
   const title = p.name + ' - MOSH GIFTS';
   const description = (p.notes && p.notes.trim()) ? p.notes.trim().replace(/\s+/g, ' ').slice(0, 300) : p.name;
-  const outDir = path.join(productsOutDir, sku);
+  const outDir = path.join(productsOutDir, slug);
   writeSharePage(outDir, title, description, imageUrl, {
-    canonical: siteBaseUrl + productsOutDir + '/' + sku + '/',
+    canonical: siteBaseUrl + productsOutDir + '/' + slug + '/',
     target: '/?product=' + encodeURIComponent(sku),
   });
   productPages++;

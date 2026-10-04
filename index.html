@@ -816,7 +816,7 @@
     sfPushUrl(sfUrlForPage(page, SF.categoryFilter));
   }
   function sfUrlForProduct(p){
-    return SITE_BASE_URL + 'p/' + encodeURIComponent(p.sku || p.id) + '/';
+    return SITE_BASE_URL + 'p/' + encodeURIComponent((p.sku || p.id).toLowerCase()) + '/';
   }
   function sfUrlForPage(page, cat){
     if(page === 'home') return SITE_BASE_URL;
@@ -833,8 +833,8 @@
     try{ params = new URLSearchParams(location.search); }catch(e){ params = null; }
     var productMatch = /\/p\/([^\/]+)\/?$/.exec(path);
     if(productMatch){
-      var ref = decodeURIComponent(productMatch[1]);
-      var prod = PRODUCTS.filter(function(x){ return x.sku===ref || x.id===ref; })[0];
+      var ref = decodeURIComponent(productMatch[1]).toLowerCase();
+      var prod = PRODUCTS.filter(function(x){ return (x.sku||'').toLowerCase()===ref || (x.id||'').toLowerCase()===ref; })[0];
       if(prod){
         SF.activeProduct = prod.id;
         SF.activeProductImageIndex = 0;
@@ -851,7 +851,8 @@
     SF.categoryFilter = catParam ? decodeURIComponent(catParam) : '';
     var refParam = params ? params.get('product') : null;
     if(refParam){
-      var prod2 = PRODUCTS.filter(function(x){ return x.sku===refParam || x.id===refParam; })[0];
+      var refLower = refParam.toLowerCase();
+      var prod2 = PRODUCTS.filter(function(x){ return (x.sku||'').toLowerCase()===refLower || (x.id||'').toLowerCase()===refLower; })[0];
       if(prod2){
         SF.activeProduct = prod2.id;
         SF.activeProductImageIndex = 0;
