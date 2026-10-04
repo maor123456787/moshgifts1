@@ -4108,39 +4108,6 @@
 </g:shipping>
 </item>
 <item>
-<g:id>E1024</g:id>
-<title>לוח שש-בש – מראקש</title>
-<description>שש-בש בקופסת עץ
-דמקה בחלקה החיצוני של הקופסא.</description>
-<link>https://mosh-gifts1.netlify.app/?product=E1024</link>
-<g:image_link>https://mosh-gifts1.netlify.app/product-images/E1024-1.jpg</g:image_link>
-<g:additional_image_link>https://mosh-gifts1.netlify.app/product-images/E1024-2.jpg</g:additional_image_link>
-<g:additional_image_link>https://mosh-gifts1.netlify.app/product-images/E1024-3.jpg</g:additional_image_link>
-<g:availability>in stock</g:availability>
-<g:price>85.00 ILS</g:price>
-<g:condition>new</g:condition>
-<g:brand>MOSH GIFTS</g:brand>
-<g:identifier_exists>no</g:identifier_exists>
-<g:shipping>
-<g:country>IL</g:country>
-<g:service>Standard shipping</g:service>
-<g:price>45.00 ILS</g:price>
-<g:min_handling_time>1</g:min_handling_time>
-<g:max_handling_time>5</g:max_handling_time>
-<g:min_transit_time>1</g:min_transit_time>
-<g:max_transit_time>5</g:max_transit_time>
-</g:shipping>
-<g:shipping>
-<g:country>IL</g:country>
-<g:service>איסוף עצמי</g:service>
-<g:price>0.00 ILS</g:price>
-<g:min_handling_time>1</g:min_handling_time>
-<g:max_handling_time>5</g:max_handling_time>
-<g:min_transit_time>1</g:min_transit_time>
-<g:max_transit_time>5</g:max_transit_time>
-</g:shipping>
-</item>
-<item>
 <g:id>E1025</g:id>
 <title>לוח שש-בש – מראקש</title>
 <description>שש-בש בקופסת עץ
