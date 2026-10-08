@@ -1092,7 +1092,7 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     var empIds = empSel==='all' ? employees.map(function(e){return e.id;}) : [empSel];
     var matrix = buildMonthlyMatrix(year, monthIndex, empIds);
 
-    var HEADER_STYLE = { fill:{ patternType:'solid', fgColor:{ rgb:'B4501E' } }, font:{ bold:true, color:{ rgb:'FFFFFF' } }, alignment:{ horizontal:'center', vertical:'center' } };
+    var HEADER_STYLE = { fill:{ patternType:'solid', fgColor:{ rgb:'B4501E' } }, font:{ bold:true, color:{ rgb:'FFFFFF' } }, alignment:{ horizontal:'center', vertical:'center', wrapText:true } };
     function styleHeaderRow(ws, cols){ styleHeaderRow2(ws, cols, 0); }
     function styleHeaderRow2(ws, cols, rowIdx){
       for(var c=0;c<cols;c++){
@@ -1107,13 +1107,15 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     var GOOD_STYLE = { fill:{ patternType:'solid', fgColor:{ rgb:'DCF5E4' } }, font:{ bold:true, color:{ rgb:'1F8A4C' } } };
     var BAD_STYLE = { fill:{ patternType:'solid', fgColor:{ rgb:'FBE6E3' } }, font:{ bold:true, color:{ rgb:'C23B32' } } };
     var TITLE_STYLE = { font:{ bold:true, sz:13 } };
+    var MAX_COL_WIDTH = 16;
     function autoCols(headers, mins){
       return headers.map(function(h,i){
-        var w = Math.max(11, String(h).length + 4);
-        if(mins && mins[i]) w = Math.max(w, mins[i]);
+        var w = Math.min(MAX_COL_WIDTH, Math.max(11, String(h).length + 4));
+        if(mins && mins[i]) w = Math.max(w, Math.min(mins[i], MAX_COL_WIDTH));
         return {wch:w};
       });
     }
+    function shortDate(d){ return pad(d.getDate())+'/'+pad(d.getMonth()+1); }
     function safeSheetName(name){
       return name.replace(/[\\\/\?\*\[\]:]/g,' ').slice(0,31);
     }
@@ -1126,9 +1128,7 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
 
     /* summary sheet */
     var header = ['עובד/ת'].concat(matrix.weeks.map(function(w,i){
-      var s = matrix.weekStandards[i];
-      var holSuffix = s.holidays.length ? (' - חג: '+s.holidays.map(function(h){return h.name+' ('+fmtDate(h.date)+')';}).join(', ')) : '';
-      return 'שבוע '+(i+1)+' ('+fmtDate(w.labelStart)+'-'+fmtDate(w.labelEnd)+') - תקן '+s.days+' ימים/'+s.hours+'ש'+holSuffix;
+      return 'שבוע '+(i+1)+' ('+shortDate(w.labelStart)+'-'+shortDate(w.labelEnd)+')';
     })).concat(['בפועל','ימי עבודה','ימי תקן','שעות תקן','פער','% עמידה','סטטוס']);
     var TITLE_ROWS = 3; // title, generated-at, blank
     var rows2 = [
@@ -1159,9 +1159,9 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
       var rn = TITLE_ROWS+2+i; // 1-indexed excel row of this employee
       var rowData = matrix.rows[i];
       var rowStyle = rowData.gap>=0 ? GOOD_STYLE : BAD_STYLE;
-      ws2[actualCol+rn] = { t:'n', f:'SUM('+startCol+rn+':'+endCol+rn+')', z:'0.00' };
-      ws2[gapCol+rn] = { t:'n', f:actualCol+rn+'-'+stdHoursCol+rn, z:'+0.00;-0.00', s: rowStyle };
-      ws2[pctCol+rn] = { t:'n', f:'ROUND('+actualCol+rn+'/'+stdHoursCol+rn+'*100,0)', z:'0"%"', s: rowStyle };
+      ws2[actualCol+rn] = { t:'n', v: Number(rowData.total.toFixed(2)), z:'0.00' };
+      ws2[gapCol+rn] = { t:'n', v: Number(rowData.gap.toFixed(2)), z:'+0.00;-0.00', s: rowStyle };
+      ws2[pctCol+rn] = { t:'n', v: Math.round(rowData.pctOfStandard), z:'0"%"', s: rowStyle };
       ws2[statusCol+rn].s = rowStyle;
       for(var wk=0; wk<numWeeks; wk++){
         var wCol = XLSX.utils.encode_col(1+wk);
@@ -1174,9 +1174,9 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     var totalsRow = totalsRowIdx+1;
     for(var c=1;c<=numWeeks;c++){
       var cl = XLSX.utils.encode_col(c);
-      ws2[cl+totalsRow] = { t:'n', f:'SUM('+cl+(TITLE_ROWS+2)+':'+cl+(TITLE_ROWS+1+matrix.rows.length)+')', z:'0.00' };
+      ws2[cl+totalsRow] = { t:'n', v: Number(matrix.weekTotals[c-1].toFixed(2)), z:'0.00' };
     }
-    ws2[actualCol+totalsRow] = { t:'n', f:'SUM('+actualCol+(TITLE_ROWS+2)+':'+actualCol+(TITLE_ROWS+1+matrix.rows.length)+')', z:'0.00' };
+    ws2[actualCol+totalsRow] = { t:'n', v: Number(matrix.grandTotal.toFixed(2)), z:'0.00' };
     ws2['!cols'] = autoCols(header, [22]);
     styleHeaderRow2(ws2, header.length, TITLE_ROWS);
     var afterTableRow = totalsRow+2;
@@ -1264,11 +1264,13 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
         if(wsH[COL_IN+row]) wsH[COL_IN+row].z = 'dd/mm/yyyy hh:mm';
         if(rec.checkOut){
           wsH[COL_OUT+row].z = 'dd/mm/yyyy hh:mm';
-          wsH[COL_HRS+row] = { t:'n', f:'('+COL_OUT+row+'-'+COL_IN+row+')*24', z:'0.00' };
-          wsH[COL_GAP+row] = { t:'n', f:COL_HRS+row+'-'+COL_STD+row, z:'+0.00;-0.00' };
           var dayHours = hoursBetween(new Date(rec.checkIn), new Date(rec.checkOut));
+          m.hours = dayHours;
+          wsH[COL_HRS+row] = { t:'n', v: Number(dayHours.toFixed(2)), z:'0.00' };
+          wsH[COL_GAP+row] = { t:'n', v: Number((dayHours-STANDARD_HOURS_PER_DAY).toFixed(2)), z:'+0.00;-0.00' };
           wsH[COL_GAP+row].s = dayHours >= STANDARD_HOURS_PER_DAY ? GOOD_STYLE : BAD_STYLE;
         } else {
+          m.hours = 0;
           wsH[COL_HRS+row] = { t:'s', v:'בעבודה' };
         }
       });
@@ -1280,7 +1282,9 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
         }
       });
       monthSubtotalRows.forEach(function(st){
-        wsH[COL_HRS+st.row] = { t:'n', f:'SUM('+COL_HRS+st.first+':'+COL_HRS+st.last+')', z:'0.00' };
+        var monthSum = dataRowMeta.filter(function(m){ return m.row>=st.first && m.row<=st.last; })
+          .reduce(function(s,m){ return s+(m.hours||0); }, 0);
+        wsH[COL_HRS+st.row] = { t:'n', v: Number(monthSum.toFixed(2)), z:'0.00' };
         for(var c=0;c<histHeader.length;c++){
           var addr = XLSX.utils.encode_cell({r:st.row-1,c:c});
           if(!wsH[addr]) wsH[addr] = { t:'s', v:'' };
@@ -1288,7 +1292,8 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
         }
       });
       if(grandTotalRow){
-        wsH[COL_HRS+grandTotalRow] = { t:'n', f:'SUM('+COL_HRS+'5:'+COL_HRS+(grandTotalRow-2)+')', z:'0.00' };
+        var grandSum = dataRowMeta.reduce(function(s,m){ return s+(m.hours||0); }, 0);
+        wsH[COL_HRS+grandTotalRow] = { t:'n', v: Number(grandSum.toFixed(2)), z:'0.00' };
         for(var gc=0;gc<histHeader.length;gc++){
           var gaddr = XLSX.utils.encode_cell({r:grandTotalRow-1,c:gc});
           if(!wsH[gaddr]) wsH[gaddr] = { t:'s', v:'' };
