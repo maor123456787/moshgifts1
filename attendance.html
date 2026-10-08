@@ -1200,7 +1200,11 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     }
     XLSX.utils.book_append_sheet(wb, ws2, usedSheetName('סיכום חודשי'));
 
-    /* one history sheet per employee, organized and colored against the daily 7h standard */
+    /* one history sheet per employee, grouped by month with a subtotal row per month + a grand total,
+       organized and colored against the daily 7h standard */
+    var MONTH_HEADER_STYLE = { font:{ bold:true }, fill:{ patternType:'solid', fgColor:{ rgb:'EFEAE0' } } };
+    var SUBTOTAL_STYLE = { font:{ bold:true }, fill:{ patternType:'solid', fgColor:{ rgb:'F5F1E8' } } };
+    var GRANDTOTAL_STYLE = { font:{ bold:true, color:{ rgb:'FFFFFF' } }, fill:{ patternType:'solid', fgColor:{ rgb:'B4501E' } } };
     empIds.forEach(function(empId){
       var emp = employees.find(function(e){return e.id===empId;});
       var empName = emp ? emp.name : '(עובד/ת נמחק/ה)';
@@ -1213,16 +1217,49 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
         [],
         histHeader
       ];
+
+      var COL_DATE='A', COL_IN='C', COL_OUT='D', COL_HRS='E', COL_STD='F', COL_GAP='G';
+      var monthHeaderRows = [];   // 1-indexed excel row numbers
+      var monthSubtotalRows = []; // {row, first, last}
+      var dataRowMeta = [];       // parallel to data rows actually pushed (excludes header/subtotal rows)
+      var curMonthKey = null, curMonthLabel = null, monthFirstDataRow = null, lastDataRow = null;
+
+      function monthLabel(d){ return HE_MONTHS[d.getMonth()]+' '+d.getFullYear(); }
+
       sorted.forEach(function(r){
         var ci = new Date(r.checkIn);
+        var key = ci.getFullYear()+'-'+pad(ci.getMonth()+1);
+        if(key !== curMonthKey){
+          if(curMonthKey !== null){
+            var subRow = hRows.length+1;
+            hRows.push(['סה"כ '+curMonthLabel]);
+            monthSubtotalRows.push({ row: subRow, first: monthFirstDataRow, last: lastDataRow });
+          }
+          curMonthLabel = monthLabel(ci);
+          var headerRow = hRows.length+1;
+          hRows.push(['חודש: '+curMonthLabel]);
+          monthHeaderRows.push(headerRow);
+          curMonthKey = key;
+          monthFirstDataRow = hRows.length+1; // next pushed row will be the first data row of this month
+        }
+        var pushedRow = hRows.length+1;
         hRows.push([ci, HE_DAYS[ci.getDay()], ci, r.checkOut ? new Date(r.checkOut) : 'בעבודה כרגע', null, STANDARD_HOURS_PER_DAY, null]);
+        dataRowMeta.push({ row: pushedRow, rec: r });
+        lastDataRow = pushedRow;
       });
+      if(curMonthKey !== null){
+        var subRow2 = hRows.length+1;
+        hRows.push(['סה"כ '+curMonthLabel]);
+        monthSubtotalRows.push({ row: subRow2, first: monthFirstDataRow, last: lastDataRow });
+      }
+      var grandTotalRow = sorted.length ? hRows.length+2 : null;
+      if(grandTotalRow){ hRows.push([]); hRows.push(['סה"כ כללי']); }
+
       var wsH = XLSX.utils.aoa_to_sheet(hRows);
       wsH['A1'].s = TITLE_STYLE;
-      var COL_DATE='A', COL_IN='C', COL_OUT='D', COL_HRS='E', COL_STD='F', COL_GAP='G';
-      for(var j=0;j<sorted.length;j++){
-        var row = 5+j;
-        var rec = sorted[j];
+
+      dataRowMeta.forEach(function(m){
+        var row = m.row, rec = m.rec;
         if(wsH[COL_DATE+row]) wsH[COL_DATE+row].z = 'dd/mm/yyyy';
         if(wsH[COL_IN+row]) wsH[COL_IN+row].z = 'dd/mm/yyyy hh:mm';
         if(rec.checkOut){
@@ -1233,6 +1270,29 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
           wsH[COL_GAP+row].s = dayHours >= STANDARD_HOURS_PER_DAY ? GOOD_STYLE : BAD_STYLE;
         } else {
           wsH[COL_HRS+row] = { t:'s', v:'בעבודה' };
+        }
+      });
+      monthHeaderRows.forEach(function(row){
+        for(var c=0;c<histHeader.length;c++){
+          var addr = XLSX.utils.encode_cell({r:row-1,c:c});
+          if(!wsH[addr]) wsH[addr] = { t:'s', v:'' };
+          wsH[addr].s = MONTH_HEADER_STYLE;
+        }
+      });
+      monthSubtotalRows.forEach(function(st){
+        wsH[COL_HRS+st.row] = { t:'n', f:'SUM('+COL_HRS+st.first+':'+COL_HRS+st.last+')', z:'0.00' };
+        for(var c=0;c<histHeader.length;c++){
+          var addr = XLSX.utils.encode_cell({r:st.row-1,c:c});
+          if(!wsH[addr]) wsH[addr] = { t:'s', v:'' };
+          wsH[addr].s = SUBTOTAL_STYLE;
+        }
+      });
+      if(grandTotalRow){
+        wsH[COL_HRS+grandTotalRow] = { t:'n', f:'SUM('+COL_HRS+'5:'+COL_HRS+(grandTotalRow-2)+')', z:'0.00' };
+        for(var gc=0;gc<histHeader.length;gc++){
+          var gaddr = XLSX.utils.encode_cell({r:grandTotalRow-1,c:gc});
+          if(!wsH[gaddr]) wsH[gaddr] = { t:'s', v:'' };
+          wsH[gaddr].s = GRANDTOTAL_STYLE;
         }
       }
       wsH['!cols'] = autoCols(histHeader, [12,10,18,18,12,10,11]);
