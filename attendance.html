@@ -220,6 +220,8 @@
   .legend-note{font-size:11.5px;}
   td.stat-good{background:var(--good-soft); color:var(--good); font-weight:700;}
   td.stat-bad{background:var(--bad-soft); color:var(--bad); font-weight:700;}
+  th.col-actual, td.col-actual{background:var(--accent-soft); color:var(--accent); font-weight:800; font-size:14.5px; border-inline:2px solid var(--accent);}
+  tfoot td.col-actual{background:var(--accent); color:var(--accent-ink);}
   #reportNote{font-size:12px; color:var(--ink-dim); margin-top:4px; line-height:1.7;}
 
   .toast{
@@ -1044,7 +1046,7 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
         var holText = s.holidays.length ? ('<br><span style="font-weight:600; color:var(--accent);">חג: '+s.holidays.map(function(h){return escapeHtml(h.name)+' ('+fmtDate(h.date)+')';}).join(', ')+'</span>') : '';
         return '<th class="num">שבוע '+(i+1)+'<br><span style="font-weight:400;">'+fmtDate(w.labelStart)+'–'+fmtDate(w.labelEnd)+'<br>תקן: '+s.days+' ימים'+holText+'</span></th>';
       }).join('') +
-      '<th class="num">בפועל</th><th class="num">ימי עבודה</th><th class="num">ימי תקן</th><th class="num">שעות תקן</th><th class="num">פער</th><th class="num">% עמידה</th><th>סטטוס</th></tr></thead>';
+      '<th class="num col-actual">בפועל</th><th class="num">ימי עבודה</th><th class="num">ימי תקן</th><th class="num">שעות תקן</th><th class="num">פער</th><th class="num">% עמידה</th><th>סטטוס</th></tr></thead>';
     var tbody = '<tbody>' + m.rows.map(function(r){
       var gapClass = r.gap >= 0 ? 'stat-good' : 'stat-bad';
       var gapText = (r.gap>=0?'+':'') + fmtHours(r.gap);
@@ -1055,7 +1057,7 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
           var daysLabel = '<br><span style="font-weight:400; font-size:10.5px;">'+r.weekActualDays[i]+'/'+m.weekStandards[i].days+' ימים</span>';
           return '<td class="num '+wCls+'">'+(h>0?fmtHours(h):'—')+(m.weekStandards[i].days>0?daysLabel:'')+'</td>';
         }).join('') +
-        '<td class="num">'+fmtHours(r.total)+'</td>' +
+        '<td class="num col-actual">'+fmtHours(r.total)+'</td>' +
         '<td class="num">'+r.actualDays+'</td>' +
         '<td class="num">'+r.standardDays+'</td>' +
         '<td class="num">'+fmtHours(r.standardHours)+'</td>' +
@@ -1065,7 +1067,7 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
     }).join('') + '</tbody>';
     var tfoot = '<tfoot><tr><td>סה״כ</td>' +
       m.weekTotals.map(function(h){ return '<td class="num">'+fmtHours(h)+'</td>'; }).join('') +
-      '<td class="num">'+fmtHours(m.grandTotal)+'</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>—</td></tr></tfoot>';
+      '<td class="num col-actual">'+fmtHours(m.grandTotal)+'</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>—</td></tr></tfoot>';
     table.innerHTML = thead + tbody + tfoot;
 
     var noteEl = document.getElementById('reportNote');
@@ -1134,6 +1136,9 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
 
     var GOOD_STYLE = { fill:{ patternType:'solid', fgColor:{ rgb:'DCF5E4' } }, font:{ bold:true, color:{ rgb:'1F8A4C' } } };
     var BAD_STYLE = { fill:{ patternType:'solid', fgColor:{ rgb:'FBE6E3' } }, font:{ bold:true, color:{ rgb:'C23B32' } } };
+    var ACTUAL_STYLE = { fill:{ patternType:'solid', fgColor:{ rgb:'FBE6CC' } }, font:{ bold:true, sz:12, color:{ rgb:'C9660A' } }, border:{ right:{ style:'medium', color:{ rgb:'C9660A' } }, left:{ style:'medium', color:{ rgb:'C9660A' } } } };
+    var ACTUAL_HEADER_STYLE = { fill:{ patternType:'solid', fgColor:{ rgb:'C9660A' } }, font:{ bold:true, sz:13, color:{ rgb:'FFFFFF' } }, alignment:{ horizontal:'center', vertical:'center', wrapText:true } };
+    var ACTUAL_TOTAL_STYLE = { fill:{ patternType:'solid', fgColor:{ rgb:'C9660A' } }, font:{ bold:true, sz:12, color:{ rgb:'FFFFFF' } } };
     var TITLE_STYLE = { font:{ bold:true, sz:13 } };
     var MAX_COL_WIDTH = 13;
     function autoCols(headers, widths){
@@ -1200,7 +1205,7 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
       var rn = TITLE_ROWS+2+i; // 1-indexed excel row of this employee
       var rowData = matrix.rows[i];
       var rowStyle = rowData.gap>=0 ? GOOD_STYLE : BAD_STYLE;
-      ws2[actualCol+rn] = { t:'n', v: Number(rowData.total.toFixed(2)), z:'0.00' };
+      ws2[actualCol+rn] = { t:'n', v: Number(rowData.total.toFixed(2)), z:'0.00', s: ACTUAL_STYLE };
       ws2[gapCol+rn] = { t:'n', v: Number(rowData.gap.toFixed(2)), z:'+0.00;-0.00', s: rowStyle };
       ws2[pctCol+rn] = { t:'n', v: Math.round(rowData.pctOfStandard), z:'0"%"', s: rowStyle };
       ws2[statusCol+rn].s = rowStyle;
@@ -1217,10 +1222,11 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
       var cl = XLSX.utils.encode_col(c);
       ws2[cl+totalsRow] = { t:'n', v: Number(matrix.weekTotals[c-1].toFixed(2)), z:'0.00' };
     }
-    ws2[actualCol+totalsRow] = { t:'n', v: Number(matrix.grandTotal.toFixed(2)), z:'0.00' };
-    var summaryColWidths = [15].concat(matrix.weeks.map(function(){ return 10; })).concat([9,9,9,10,9,9,11]);
+    ws2[actualCol+totalsRow] = { t:'n', v: Number(matrix.grandTotal.toFixed(2)), z:'0.00', s: ACTUAL_TOTAL_STYLE };
+    var summaryColWidths = [15].concat(matrix.weeks.map(function(){ return 10; })).concat([11,9,9,10,9,9,11]);
     ws2['!cols'] = autoCols(header, summaryColWidths);
     styleHeaderRow2(ws2, header.length, TITLE_ROWS);
+    ws2[actualCol+(TITLE_ROWS+1)].s = ACTUAL_HEADER_STYLE;
     var afterTableRow = totalsRow+2;
     XLSX.utils.sheet_add_aoa(ws2, [['תקן יומי: לפי ההגדרה שנקבעה לכל עובד/ת (למעלה), א׳-ה׳ בלבד (לא כולל שישי-שבת וחגים)']], { origin: 'A'+afterTableRow });
     afterTableRow++;
@@ -1310,7 +1316,7 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
           wsH[COL_OUT+row].z = 'hh:mm';
           var dayHours = hoursBetween(new Date(rec.checkIn), new Date(rec.checkOut));
           m.hours = dayHours;
-          wsH[COL_HRS+row] = { t:'n', v: Number(dayHours.toFixed(2)), z:'0.00' };
+          wsH[COL_HRS+row] = { t:'n', v: Number(dayHours.toFixed(2)), z:'0.00', s: ACTUAL_STYLE };
           wsH[COL_GAP+row] = { t:'n', v: Number((dayHours-empHpd).toFixed(2)), z:'+0.00;-0.00' };
           wsH[COL_GAP+row].s = dayHours >= empHpd ? GOOD_STYLE : BAD_STYLE;
         } else {
@@ -1344,8 +1350,9 @@ var XLSX={};function make_xlsx_lib(a){a.version="0.18.5",a.style_version="1.2.0"
           wsH[gaddr].s = GRANDTOTAL_STYLE;
         }
       }
-      wsH['!cols'] = autoCols(histHeader, [10,8,8,8,10,9,9]);
+      wsH['!cols'] = autoCols(histHeader, [10,8,8,8,11,9,9]);
       styleHeaderRow2(wsH, histHeader.length, 3);
+      wsH[COL_HRS+'4'].s = ACTUAL_HEADER_STYLE;
       wrapAllCells(wsH, 4, grandTotalRow || lastDataRow);
       XLSX.utils.book_append_sheet(wb, wsH, usedSheetName('היסטוריה - '+empName));
     });
